@@ -1,0 +1,2 @@
+# assign-task-to-do
+Nome provisório, esse projeto destina-se a criar um grupo de usuários, permitindo alguns serem responsáveis sobre o grupo, além do criado do mesmo. As atividades criadas podem ser distribuídas manualmente ou então automaticamete, com base em restrições e configurações do grupo. Pode-se também informar a periodicidade da tarefa e também a frequência de notificação para realizar a mesma.
