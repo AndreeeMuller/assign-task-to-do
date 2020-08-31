@@ -1,0 +1,88 @@
+1) Criar grupo de pessoas
+Família André e Flávia
+
+2) Adicionar pessoas (Opção de declarar pessoas que são responsáveis, ou seja, que podem aceitar adiantamento de atividade)
+André
+Flávia
+
+3) Adicionar atividade
+Lavar a louça - Todos os dias - Dia inteiro - Sem restrição - Pode enviar foto da louça limpa. - Notificação às 12:00 e 20:00 horas.
+Limpar o banheiro - Uma vez por semana - Qualquer horário - André não pode - Pode enviar foto do vazo, pía, box e chão limpos. - Notificação no dia previsto as 12:00.
+Levar o lixo para rua - Terça, quinta e sábado - Preferencialmente a noite - Flávia não pode - Pode enviar foto do lixo na rua. - Notificação entre as 19:00 e 21:00 a cada 20 minutos, parando após confirmar a atividade.
+Lavar a roupa - Duas vezes por semana - Qualquer horário - Sem restrição - Pode enviar foto da roupa na máquina. - Notificação no dia previsto as 10:00.
+Estender a roupa - Após lavar a roupa - Após lavar a roupa - Sem restrição - Pode enviar foto da roupa estendida. - Notificação 2 horas após lavar a roupa.
+Recolher, dobrar e guardar a roupa - Após estender a roupa - Após estender a roupa - Sem restrição - Pode enviar foto da roupa recolhida, dobrada e guardada. - Notificação 12 horas após estender a roupa.
+
+Obs: Caso as notificações estejam dentro de um horário específico, notificar em outro horário pré-definido. Exemplo: Estender a roupa, que é 2 horas após lavar a roupa, cair às 23:00, e vc estipular que entre as 22:00 e 08:00 não pode notificar, vai renotificar no primeiro horário, ou seja, as 08:00.
+Obs2: Um exemplo de não realização da atividade, é a falta de água, caso a atividade seja lavar a louça, porém não possui água, solicitar o adiantamento dessa atividade (1 hora, 1 dia, 1 semana...), que, após confirmação do usuário master, será "empurrado" o cronograma, para não sofrer alteração brusca, ou seja, se no outro dia outro pessoa era responsavel pela louça, vai adiar conforme período selecionado.
+Obs3: Definir se uma determinada atividade permite troca.
+Obs4: Opções de data: Seg à Dom, Toda segunda a cada x semanas, todo mês, a cada x dias, a cada x dias na próxima terça feira, nos dias 5, 15, 21 e 28 de todo mês.
+
+4) Sistema criar cronograma com base nas regras das atividades
+
+
+----
+
+Usuário pode pesquisar quando será executado uma determinada atividade por ele, ex:
+
+André - Lavar a Louça
+
+Mostrar calendário com os dias coloridos que vai cair a atividade.
+
+----
+
+Visão inicial, mostrar atividades do dia ligada ao responsável, ou que estejam atrasadas/pedentes de dias anteriores.
+
+Opção de visualizar por semana e mês também **** talvez só seja possível em aparelhos maiores, verificar possibilidade.
+
+----
+
+Usuário pode confirmar a atividade. (Aguarda aprovação de um usuário responsável para finalizar)
+
+----
+
+
+
+
+
+
+
+
+No momento em que for realizar uma atividade, caso tenha algum impedimento, informar o motivo e reagendar a atividade (com permissão do usuário responsável pelo grupo, podendo ser 1 ou mais)
+
+Cadastrar atividadas para casa
+
+Criar familia, inserir pessoas.
+
+Ao criar uma atividade, ter a opção de limitar as pessoas que podem faze-lá, pois pode ser que em um grupo de pessoas, tenha limitações para tal atividade.
+
+Distribuir as atividades aleatoriamente com base nas limitações.
+
+Informar horários para serem executadas ex: "entre as 12:00 e 14:00, lavar a louça" Caso falte água, poder estender essa atividade, porém informando o motivo (com permissão do usuário responsável pelo grupo, podendo ser 1 ou mais).
+
+ter a opção para realizar troca de atividades, com permissão de ambos usuários. Ex: Irmão tem que limpar o banheiro, mas quer lavar a louça, a irmão está com o lavar a louça, logo surge-se a opção de trocar as atividades.
+
+Opção de atribuir foto durante o processo, podendo informar se é ou não obrigatório.
+
+Criar uma lista de fotos obrigatórias, exemplo: Limpar a cozinha, deve-se subir a foto com o fogão, pia, louça e balcão limpos. 
+
+Uma atividade não pode ser distribuída X vezes seguidas para uma pessoa. Ex: Lavar a louça só pode repetir em seguida no máximo 2 vezes.
+
+Caso a pessoa tenha inpedimentos em todas atividades do dia, por causa de uma força maior (médico, acidente, etc...), empurrar para o outro dia e reprocessar a agenda do grupo.
+
+
+Tipo de Agendamento do Grupo:
+
+AUTOMATICO: Agendamento automatico vai gerar randomicamente as atividades aos usuários, levando em conta as restrições e configurações.
+MANUAL: Usuários Responsáveis devem atribuir as atividades manualmente, com base nas restrições e configurações. ------ Criar uma painel que web para distribuição das atividades com base nos dias e semanas, podendo arrastar e atribuir.
+
+
+
+
+Intervalos:
+
+diario
+semanal (dia da semana)
+mensal (dia da semana, semana do mês)
+a cada x dias (dentro dos seguintes dias da semana "seg, ter, qua, qui, sex")
+
