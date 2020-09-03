@@ -1,0 +1,1665 @@
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+25   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+45   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+46   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+58   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+973  [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+986  [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+989  [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+994  [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+997  [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1000 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1001 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1003 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+13787453 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@1af68fd]
+13789225 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.PlayPen  - Drop: I am over dtde=java.awt.dnd.DropTargetDropEvent[source=java.awt.dnd.DropTarget@1af68fd]
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+25   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+44   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+45   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+57   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+1044 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1057 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1060 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1065 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1069 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1071 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1073 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1076 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+994973 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE seq_idusuario
+994980 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Usuario (
+                idUsuario INTEGER NOT NULL DEFAULT nextval('seq_idusuario'),
+                usuario VARCHAR(32) NOT NULL,
+                nome VARCHAR(255) NOT NULL,
+                CONSTRAINT usuario_pk PRIMARY KEY (idUsuario)
+)
+994981 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Usuario IS 'Usuários do sistema'
+994981 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Usuario.usuario IS 'Usuário para realizar login no sistema'
+994981 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Usuario.nome IS 'Nome do usuário que pertence a conta.'
+994982 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idusuario OWNED BY Usuario.idUsuario
+994982 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idatividade
+994983 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Atividade (
+                idAtividade INTEGER NOT NULL DEFAULT nextval('seq_idatividade'),
+                idUsuario INTEGER NOT NULL,
+                titulo VARCHAR(128) NOT NULL,
+                descricao VARCHAR(1024),
+                nivelDificuldade SMALLINT DEFAULT 3 NOT NULL,
+                qtdMaxAtividadeSeguidaUsuario SMALLINT DEFAULT 0 NOT NULL,
+                permiteTroca CHAR(1) DEFAULT 'S' NOT NULL,
+                CONSTRAINT atividade_pk PRIMARY KEY (idAtividade)
+)
+994983 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Atividade IS 'Define as atividades padrões, podendo, no momento de vincular com o grupo, alterar as informações. Exemplo: Atividade tirar o lixo para rua, por padrão na minha região é ter, qui, sab, mas pode-ser que em outras regiões sejam outros dias, no caso vai ter a configuração padrão da atividade e a configuração que realmente será aplicada no grupo.'
+994983 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.titulo IS 'Título da atividade, ex: Lavar a louça'
+994984 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.descricao IS 'Descrição sobre a atividade, ex: Ao lavar a louça, favor utilizar o detergente top1000 de linha, guardar também.'
+994984 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.nivelDificuldade IS 'De 1 a 5 informe o nível de dificuldade para realização da atividade, sendo 1 muito tranquilo, 2 tranquilo, 3 normal, 4 dificil e 5 muito dificil.'
+994984 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.qtdMaxAtividadeSeguidaUsuario IS 'Quantidade Máxima de Atividade que um Usuário pode ter seguida, ou seja, Lavar a Louça hoje, amanhã, depois de amanhã... não pode, ter que intercalar pela quantidade máxima definida, se for 2, pode-se apenas 2 vezes. A não ser que seja uma atividade restringida a outros usuários, neste caso vai para a única pessoa disponível. Informe 0 para sem limite.'
+994984 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.permiteTroca IS 'Diz se uma determinada atividade permite troca com outro usuário. S -> Sim | N -> Não'
+994985 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idatividade OWNED BY Atividade.idAtividade
+994985 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupo
+994986 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Grupo (
+                idGrupo INTEGER NOT NULL DEFAULT nextval('seq_idgrupo'),
+                idUsuario INTEGER NOT NULL,
+                descricao VARCHAR(255) NOT NULL,
+                tipoAgenda VARCHAR(10) DEFAULT 'AUTOMATICO' NOT NULL,
+                CONSTRAINT grupo_pk PRIMARY KEY (idGrupo)
+)
+994986 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Grupo IS 'Definição dos grupos de usuários '
+994986 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Grupo.descricao IS 'Descrição do Grupo - Ex: Família Müller'
+994986 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Grupo.tipoAgenda IS 'Tipo do agendamento que será gerado com base nas atividades e usuários. AUTOMATICO -> Agendamento automatico vai gerar randomicamente as atividades aos usuários, levando em conta as restrições e configurações. | MANUAL -> Usuários Responsáveis devem atribuir as atividades manualmente, com base nas restrições e configurações.'
+994986 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupo OWNED BY Grupo.idGrupo
+994987 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividade
+994987 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividade (
+                idGrupoAtividade INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividade'),
+                idGrupo INTEGER NOT NULL,
+                idAtividade INTEGER NOT NULL,
+                titulo VARCHAR(128) NOT NULL,
+                descricao VARCHAR(1024),
+                nivelDificuldade SMALLINT DEFAULT 3 NOT NULL,
+                qtdMaxAtividadeSeguidaUsuario SMALLINT DEFAULT 0 NOT NULL,
+                permiteTroca CHAR(1) DEFAULT 'S' NOT NULL,
+                CONSTRAINT grupoatividade_pk PRIMARY KEY (idGrupoAtividade)
+)
+994987 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividade IS 'Define as atividades para distribuir entre os usuários do grupo.'
+994988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.titulo IS 'Título da atividade, ex: Lavar a louça'
+994988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.descricao IS 'Descrição sobre a atividade, ex: Ao lavar a louça, favor utilizar o detergente top1000 de linha, guardar também.'
+994988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.nivelDificuldade IS 'De 1 a 5 informe o nível de dificuldade para realização da atividade, sendo 1 muito tranquilo, 2 tranquilo, 3 normal, 4 dificil e 5 muito dificil.'
+994988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.qtdMaxAtividadeSeguidaUsuario IS 'Quantidade Máxima de Atividade que um Usuário pode ter seguida, ou seja, Lavar a Louça hoje, amanhã, depois de amanhã... não pode, ter que intercalar pela quantidade máxima definida, se for 2, pode-se apenas 2 vezes. A não ser que seja uma atividade restringida a outros usuários, neste caso vai para a única pessoa disponível. Informe 0 para sem limite.'
+994988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.permiteTroca IS 'Diz se uma determinada atividade permite troca com outro usuário. S -> Sim | N -> Não'
+994988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividade OWNED BY GrupoAtividade.idGrupoAtividade
+994988 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupousuario
+994989 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoUsuario (
+                idGrupoUsuario INTEGER NOT NULL DEFAULT nextval('seq_idgrupousuario'),
+                idGrupo INTEGER NOT NULL,
+                idUsuario INTEGER NOT NULL,
+                responsavel CHAR(1) DEFAULT 'N' NOT NULL,
+                situacao CHAR(1) DEFAULT 'P' NOT NULL,
+                CONSTRAINT grupousuario_pk PRIMARY KEY (idGrupoUsuario)
+)
+994989 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoUsuario IS 'Definição dos usuários de um determinado grupo'
+994989 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoUsuario.responsavel IS 'Informa se o usuário adicionado ao grupo é responsável sobre o grupo. S -> Sim | N -> Não'
+994989 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoUsuario.situacao IS 'Situação do usuário no grupo. P -> Pendente, ou seja, aguardando usuário aceitar vinculo com o grupo. A -> Aceito, ou seja, usuário aceitou vinculo com o grupo. S -> Saiu, ou seja, usuário saiu do grupo.'
+994989 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupousuario OWNED BY GrupoUsuario.idGrupoUsuario
+994990 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadeagenda
+994990 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeAgenda (
+                idGrupoAtividadeAgenda BIGINT NOT NULL DEFAULT nextval('seq_idgrupoatividadeagenda'),
+                idGrupoAtividade INTEGER NOT NULL,
+                idGrupoUsuario INTEGER NOT NULL,
+                dataAtividadePrevisao DATE NOT NULL,
+                dataAtividadeRealizada DATE,
+                horaAtividadeRealizada VARCHAR(10),
+                horaAtividadeRealizadaMs BIGINT,
+                CONSTRAINT grupoatividadeagenda_pk PRIMARY KEY (idGrupoAtividadeAgenda)
+)
+994990 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeAgenda IS 'Define as atividades que serão executadas e quando serão executadas.Podendo ser automatico ou manual, com base na configuração.'
+994990 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.dataAtividadePrevisao IS 'Data em que está previsto para realizar tal atividade.'
+994991 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.dataAtividadeRealizada IS 'Data em que foi de fato realizada tal atividade.'
+994991 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.horaAtividadeRealizada IS 'Hora em que tal atividade foi realizada.'
+994991 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.horaAtividadeRealizadaMs IS 'Hora em que tal atividade foi realizada, no formato milissegundos. (execelente para cálculos)'
+994991 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadeagenda OWNED BY GrupoAtividadeAgenda.idGrupoAtividadeAgenda
+994991 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadeagendadetalhe
+994992 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeAgendaDetalhe (
+                idGrupoAtividadeAgendaDetalhe INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividadeagendadetalhe'),
+                idGrupoAtividadeAgenda BIGINT NOT NULL,
+                descricao VARCHAR(255),
+                arquivo BYTEA,
+                nomeArquivo VARCHAR(128),
+                extensaoArquivo VARCHAR(32),
+                dataInclusao DATE DEFAULT current_date NOT NULL,
+                horaInclusao VARCHAR(10) NOT NULL,
+                idGrupoUsuarioInclusao INTEGER NOT NULL,
+                dataAlteracao DATE DEFAULT current_date NOT NULL,
+                horaAlteracao VARCHAR(10) NOT NULL,
+                idGrupoUsuarioAlteracao INTEGER NOT NULL,
+                CONSTRAINT grupoatividadeagendadetalhe_pk PRIMARY KEY (idGrupoAtividadeAgendaDetalhe)
+)
+994992 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeAgendaDetalhe IS 'Define os detalhes (comentários, fotos, arquivos, etc...) de uma atividade.'
+994992 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.descricao IS 'Descrição sobre o detalhe da atividade. Ex: Segue foto da louça limpa'
+994992 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.arquivo IS 'Caso seja anexado um arquivo.'
+994992 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.nomeArquivo IS 'Nome do arquivo, ao subir, pode-se alterar o nome original (será usado para download)'
+994992 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.extensaoArquivo IS 'Extensão do arquivo, quando houver.'
+994993 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.dataInclusao IS 'Data em que foi incluído o detalhe '
+994993 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.horaInclusao IS 'Hora em que detalhe foi inserido.'
+994993 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.idGrupoUsuarioInclusao IS 'Usuário que incluiu'
+994993 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.dataAlteracao IS 'Data em que foi alterado o detalhe '
+994993 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.horaAlteracao IS 'Hora em que detalhe foi alterado.'
+994993 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.idGrupoUsuarioAlteracao IS 'Usuário que alterou'
+994993 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadeagendadetalhe OWNED BY GrupoAtividadeAgendaDetalhe.idGrupoAtividadeAgendaDetalhe
+994993 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadegrupousuario
+994994 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeGrupoUsuario (
+                idGrupoAtividadeGrupoUsuario INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividadegrupousuario'),
+                idGrupoAtividade INTEGER NOT NULL,
+                idGrupoUsuario INTEGER NOT NULL,
+                situacao CHAR(1) DEFAULT 'A' NOT NULL,
+                CONSTRAINT grupoatividadegrupousuario_pk PRIMARY KEY (idGrupoAtividadeGrupoUsuario)
+)
+994994 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeGrupoUsuario IS 'Define alguns parâmetros entre as atividades e o usuários. Exemplo: Usuário tal não pode realizar tal tarefa.'
+994994 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeGrupoUsuario.situacao IS 'Se o usuário possui alguma restrinção, a tarefa não pode ser distribuída a ele. A -> Ativo (Apto para realização da atividade) | I -> Inativo (Inapto para realização da atividade)'
+994994 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadegrupousuario OWNED BY GrupoAtividadeGrupoUsuario.idGrupoAtividadeGrupoUsuario
+994995 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoUsuario ADD CONSTRAINT usuario_grupousuario_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+994995 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Atividade ADD CONSTRAINT usuario_atividade_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+994996 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Grupo ADD CONSTRAINT usuario_grupo_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+994996 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividade ADD CONSTRAINT atividade_grupoatividade_fk
+FOREIGN KEY (idAtividade)
+REFERENCES Atividade (idAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+994996 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoUsuario ADD CONSTRAINT grupo_grupousuario_fk
+FOREIGN KEY (idGrupo)
+REFERENCES Grupo (idGrupo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+994997 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividade ADD CONSTRAINT grupo_grupoatividade_fk
+FOREIGN KEY (idGrupo)
+REFERENCES Grupo (idGrupo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+994997 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeGrupoUsuario ADD CONSTRAINT grupoatividade_grupoatividadegrupousuario_fk
+FOREIGN KEY (idGrupoAtividade)
+REFERENCES GrupoAtividade (idGrupoAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+994997 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgenda ADD CONSTRAINT grupoatividade_grupoagenda_fk
+FOREIGN KEY (idGrupoAtividade)
+REFERENCES GrupoAtividade (idGrupoAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+994998 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeGrupoUsuario ADD CONSTRAINT grupousuario_grupoatividadegrupousuario_fk
+FOREIGN KEY (idGrupoUsuario)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+994998 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgenda ADD CONSTRAINT grupousuario_grupoagenda_fk
+FOREIGN KEY (idGrupoUsuario)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+994999 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupousuario_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoUsuarioInclusao)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+994999 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupousuario_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoUsuarioAlteracao)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+995000 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupoatividadeagenda_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoAtividadeAgenda)
+REFERENCES GrupoAtividadeAgenda (idGrupoAtividadeAgenda)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009515 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE seq_idusuario
+1009515 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Usuario (
+                idUsuario INTEGER NOT NULL DEFAULT nextval('seq_idusuario'),
+                usuario VARCHAR(32) NOT NULL,
+                nome VARCHAR(255) NOT NULL,
+                CONSTRAINT usuario_pk PRIMARY KEY (idUsuario)
+)
+1009515 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Usuario IS 'Usuários do sistema'
+1009516 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Usuario.usuario IS 'Usuário para realizar login no sistema'
+1009516 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Usuario.nome IS 'Nome do usuário que pertence a conta.'
+1009516 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idusuario OWNED BY Usuario.idUsuario
+1009516 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idatividade
+1009517 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Atividade (
+                idAtividade INTEGER NOT NULL DEFAULT nextval('seq_idatividade'),
+                idUsuario INTEGER NOT NULL,
+                titulo VARCHAR(128) NOT NULL,
+                descricao VARCHAR(1024),
+                nivelDificuldade SMALLINT DEFAULT 3 NOT NULL,
+                qtdMaxAtividadeSeguidaUsuario SMALLINT DEFAULT 0 NOT NULL,
+                permiteTroca CHAR(1) DEFAULT 'S' NOT NULL,
+                CONSTRAINT atividade_pk PRIMARY KEY (idAtividade)
+)
+1009517 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Atividade IS 'Define as atividades padrões, podendo, no momento de vincular com o grupo, alterar as informações. Exemplo: Atividade tirar o lixo para rua, por padrão na minha região é ter, qui, sab, mas pode-ser que em outras regiões sejam outros dias, no caso vai ter a configuração padrão da atividade e a configuração que realmente será aplicada no grupo.'
+1009517 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.titulo IS 'Título da atividade, ex: Lavar a louça'
+1009517 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.descricao IS 'Descrição sobre a atividade, ex: Ao lavar a louça, favor utilizar o detergente top1000 de linha, guardar também.'
+1009517 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.nivelDificuldade IS 'De 1 a 5 informe o nível de dificuldade para realização da atividade, sendo 1 muito tranquilo, 2 tranquilo, 3 normal, 4 dificil e 5 muito dificil.'
+1009517 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.qtdMaxAtividadeSeguidaUsuario IS 'Quantidade Máxima de Atividade que um Usuário pode ter seguida, ou seja, Lavar a Louça hoje, amanhã, depois de amanhã... não pode, ter que intercalar pela quantidade máxima definida, se for 2, pode-se apenas 2 vezes. A não ser que seja uma atividade restringida a outros usuários, neste caso vai para a única pessoa disponível. Informe 0 para sem limite.'
+1009518 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.permiteTroca IS 'Diz se uma determinada atividade permite troca com outro usuário. S -> Sim | N -> Não'
+1009518 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idatividade OWNED BY Atividade.idAtividade
+1009518 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupo
+1009518 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Grupo (
+                idGrupo INTEGER NOT NULL DEFAULT nextval('seq_idgrupo'),
+                idUsuario INTEGER NOT NULL,
+                descricao VARCHAR(255) NOT NULL,
+                tipoAgenda VARCHAR(10) DEFAULT 'AUTOMATICO' NOT NULL,
+                CONSTRAINT grupo_pk PRIMARY KEY (idGrupo)
+)
+1009519 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Grupo IS 'Definição dos grupos de usuários '
+1009519 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Grupo.descricao IS 'Descrição do Grupo - Ex: Família Müller'
+1009519 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Grupo.tipoAgenda IS 'Tipo do agendamento que será gerado com base nas atividades e usuários. AUTOMATICO -> Agendamento automatico vai gerar randomicamente as atividades aos usuários, levando em conta as restrições e configurações. | MANUAL -> Usuários Responsáveis devem atribuir as atividades manualmente, com base nas restrições e configurações.'
+1009519 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupo OWNED BY Grupo.idGrupo
+1009519 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividade
+1009520 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividade (
+                idGrupoAtividade INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividade'),
+                idGrupo INTEGER NOT NULL,
+                idAtividade INTEGER NOT NULL,
+                titulo VARCHAR(128) NOT NULL,
+                descricao VARCHAR(1024),
+                nivelDificuldade SMALLINT DEFAULT 3 NOT NULL,
+                qtdMaxAtividadeSeguidaUsuario SMALLINT DEFAULT 0 NOT NULL,
+                permiteTroca CHAR(1) DEFAULT 'S' NOT NULL,
+                CONSTRAINT grupoatividade_pk PRIMARY KEY (idGrupoAtividade)
+)
+1009520 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividade IS 'Define as atividades para distribuir entre os usuários do grupo.'
+1009520 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.titulo IS 'Título da atividade, ex: Lavar a louça'
+1009520 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.descricao IS 'Descrição sobre a atividade, ex: Ao lavar a louça, favor utilizar o detergente top1000 de linha, guardar também.'
+1009520 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.nivelDificuldade IS 'De 1 a 5 informe o nível de dificuldade para realização da atividade, sendo 1 muito tranquilo, 2 tranquilo, 3 normal, 4 dificil e 5 muito dificil.'
+1009521 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.qtdMaxAtividadeSeguidaUsuario IS 'Quantidade Máxima de Atividade que um Usuário pode ter seguida, ou seja, Lavar a Louça hoje, amanhã, depois de amanhã... não pode, ter que intercalar pela quantidade máxima definida, se for 2, pode-se apenas 2 vezes. A não ser que seja uma atividade restringida a outros usuários, neste caso vai para a única pessoa disponível. Informe 0 para sem limite.'
+1009521 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.permiteTroca IS 'Diz se uma determinada atividade permite troca com outro usuário. S -> Sim | N -> Não'
+1009521 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividade OWNED BY GrupoAtividade.idGrupoAtividade
+1009521 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupousuario
+1009522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoUsuario (
+                idGrupoUsuario INTEGER NOT NULL DEFAULT nextval('seq_idgrupousuario'),
+                idGrupo INTEGER NOT NULL,
+                idUsuario INTEGER NOT NULL,
+                responsavel CHAR(1) DEFAULT 'N' NOT NULL,
+                situacao CHAR(1) DEFAULT 'P' NOT NULL,
+                CONSTRAINT grupousuario_pk PRIMARY KEY (idGrupoUsuario)
+)
+1009522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoUsuario IS 'Definição dos usuários de um determinado grupo'
+1009522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoUsuario.responsavel IS 'Informa se o usuário adicionado ao grupo é responsável sobre o grupo. S -> Sim | N -> Não'
+1009522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoUsuario.situacao IS 'Situação do usuário no grupo. P -> Pendente, ou seja, aguardando usuário aceitar vinculo com o grupo. A -> Aceito, ou seja, usuário aceitou vinculo com o grupo. S -> Saiu, ou seja, usuário saiu do grupo.'
+1009522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupousuario OWNED BY GrupoUsuario.idGrupoUsuario
+1009523 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadeagenda
+1009523 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeAgenda (
+                idGrupoAtividadeAgenda BIGINT NOT NULL DEFAULT nextval('seq_idgrupoatividadeagenda'),
+                idGrupoAtividade INTEGER NOT NULL,
+                idGrupoUsuario INTEGER NOT NULL,
+                dataAtividadePrevisao DATE NOT NULL,
+                dataAtividadeRealizada DATE,
+                horaAtividadeRealizada VARCHAR(10),
+                horaAtividadeRealizadaMs BIGINT,
+                CONSTRAINT grupoatividadeagenda_pk PRIMARY KEY (idGrupoAtividadeAgenda)
+)
+1009523 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeAgenda IS 'Define as atividades que serão executadas e quando serão executadas.Podendo ser automatico ou manual, com base na configuração.'
+1009523 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.dataAtividadePrevisao IS 'Data em que está previsto para realizar tal atividade.'
+1009524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.dataAtividadeRealizada IS 'Data em que foi de fato realizada tal atividade.'
+1009524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.horaAtividadeRealizada IS 'Hora em que tal atividade foi realizada.'
+1009524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.horaAtividadeRealizadaMs IS 'Hora em que tal atividade foi realizada, no formato milissegundos. (execelente para cálculos)'
+1009524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadeagenda OWNED BY GrupoAtividadeAgenda.idGrupoAtividadeAgenda
+1009524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadeagendadetalhe
+1009525 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeAgendaDetalhe (
+                idGrupoAtividadeAgendaDetalhe INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividadeagendadetalhe'),
+                idGrupoAtividadeAgenda BIGINT NOT NULL,
+                descricao VARCHAR(255),
+                arquivo BYTEA,
+                nomeArquivo VARCHAR(128),
+                extensaoArquivo VARCHAR(32),
+                dataInclusao DATE DEFAULT current_date NOT NULL,
+                horaInclusao VARCHAR(10) NOT NULL,
+                idGrupoUsuarioInclusao INTEGER NOT NULL,
+                dataAlteracao DATE DEFAULT current_date NOT NULL,
+                horaAlteracao VARCHAR(10) NOT NULL,
+                idGrupoUsuarioAlteracao INTEGER NOT NULL,
+                CONSTRAINT grupoatividadeagendadetalhe_pk PRIMARY KEY (idGrupoAtividadeAgendaDetalhe)
+)
+1009525 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeAgendaDetalhe IS 'Define os detalhes (comentários, fotos, arquivos, etc...) de uma atividade.'
+1009525 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.descricao IS 'Descrição sobre o detalhe da atividade. Ex: Segue foto da louça limpa'
+1009525 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.arquivo IS 'Caso seja anexado um arquivo.'
+1009525 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.nomeArquivo IS 'Nome do arquivo, ao subir, pode-se alterar o nome original (será usado para download)'
+1009526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.extensaoArquivo IS 'Extensão do arquivo, quando houver.'
+1009526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.dataInclusao IS 'Data em que foi incluído o detalhe '
+1009526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.horaInclusao IS 'Hora em que detalhe foi inserido.'
+1009526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.idGrupoUsuarioInclusao IS 'Usuário que incluiu'
+1009526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.dataAlteracao IS 'Data em que foi alterado o detalhe '
+1009526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.horaAlteracao IS 'Hora em que detalhe foi alterado.'
+1009527 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.idGrupoUsuarioAlteracao IS 'Usuário que alterou'
+1009527 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadeagendadetalhe OWNED BY GrupoAtividadeAgendaDetalhe.idGrupoAtividadeAgendaDetalhe
+1009527 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadegrupousuario
+1009527 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeGrupoUsuario (
+                idGrupoAtividadeGrupoUsuario INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividadegrupousuario'),
+                idGrupoAtividade INTEGER NOT NULL,
+                idGrupoUsuario INTEGER NOT NULL,
+                situacao CHAR(1) DEFAULT 'A' NOT NULL,
+                CONSTRAINT grupoatividadegrupousuario_pk PRIMARY KEY (idGrupoAtividadeGrupoUsuario)
+)
+1009528 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeGrupoUsuario IS 'Define alguns parâmetros entre as atividades e o usuários. Exemplo: Usuário tal não pode realizar tal tarefa.'
+1009528 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeGrupoUsuario.situacao IS 'Se o usuário possui alguma restrinção, a tarefa não pode ser distribuída a ele. A -> Ativo (Apto para realização da atividade) | I -> Inativo (Inapto para realização da atividade)'
+1009528 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadegrupousuario OWNED BY GrupoAtividadeGrupoUsuario.idGrupoAtividadeGrupoUsuario
+1009528 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoUsuario ADD CONSTRAINT usuario_grupousuario_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009528 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Atividade ADD CONSTRAINT usuario_atividade_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Grupo ADD CONSTRAINT usuario_grupo_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividade ADD CONSTRAINT atividade_grupoatividade_fk
+FOREIGN KEY (idAtividade)
+REFERENCES Atividade (idAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoUsuario ADD CONSTRAINT grupo_grupousuario_fk
+FOREIGN KEY (idGrupo)
+REFERENCES Grupo (idGrupo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividade ADD CONSTRAINT grupo_grupoatividade_fk
+FOREIGN KEY (idGrupo)
+REFERENCES Grupo (idGrupo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeGrupoUsuario ADD CONSTRAINT grupoatividade_grupoatividadegrupousuario_fk
+FOREIGN KEY (idGrupoAtividade)
+REFERENCES GrupoAtividade (idGrupoAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgenda ADD CONSTRAINT grupoatividade_grupoagenda_fk
+FOREIGN KEY (idGrupoAtividade)
+REFERENCES GrupoAtividade (idGrupoAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeGrupoUsuario ADD CONSTRAINT grupousuario_grupoatividadegrupousuario_fk
+FOREIGN KEY (idGrupoUsuario)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgenda ADD CONSTRAINT grupousuario_grupoagenda_fk
+FOREIGN KEY (idGrupoUsuario)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupousuario_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoUsuarioInclusao)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009531 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupousuario_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoUsuarioAlteracao)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1009531 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupoatividadeagenda_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoAtividadeAgenda)
+REFERENCES GrupoAtividadeAgenda (idGrupoAtividadeAgenda)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010622 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE seq_idusuario
+1010622 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Usuario (
+                idUsuario INTEGER NOT NULL DEFAULT nextval('seq_idusuario'),
+                usuario VARCHAR(32) NOT NULL,
+                nome VARCHAR(255) NOT NULL,
+                CONSTRAINT usuario_pk PRIMARY KEY (idUsuario)
+)
+1010622 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Usuario IS 'Usuários do sistema'
+1010623 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Usuario.usuario IS 'Usuário para realizar login no sistema'
+1010623 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Usuario.nome IS 'Nome do usuário que pertence a conta.'
+1010623 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idusuario OWNED BY Usuario.idUsuario
+1010623 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idatividade
+1010623 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Atividade (
+                idAtividade INTEGER NOT NULL DEFAULT nextval('seq_idatividade'),
+                idUsuario INTEGER NOT NULL,
+                titulo VARCHAR(128) NOT NULL,
+                descricao VARCHAR(1024),
+                nivelDificuldade SMALLINT DEFAULT 3 NOT NULL,
+                qtdMaxAtividadeSeguidaUsuario SMALLINT DEFAULT 0 NOT NULL,
+                permiteTroca CHAR(1) DEFAULT 'S' NOT NULL,
+                CONSTRAINT atividade_pk PRIMARY KEY (idAtividade)
+)
+1010624 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Atividade IS 'Define as atividades padrões, podendo, no momento de vincular com o grupo, alterar as informações. Exemplo: Atividade tirar o lixo para rua, por padrão na minha região é ter, qui, sab, mas pode-ser que em outras regiões sejam outros dias, no caso vai ter a configuração padrão da atividade e a configuração que realmente será aplicada no grupo.'
+1010624 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.titulo IS 'Título da atividade, ex: Lavar a louça'
+1010624 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.descricao IS 'Descrição sobre a atividade, ex: Ao lavar a louça, favor utilizar o detergente top1000 de linha, guardar também.'
+1010624 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.nivelDificuldade IS 'De 1 a 5 informe o nível de dificuldade para realização da atividade, sendo 1 muito tranquilo, 2 tranquilo, 3 normal, 4 dificil e 5 muito dificil.'
+1010624 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.qtdMaxAtividadeSeguidaUsuario IS 'Quantidade Máxima de Atividade que um Usuário pode ter seguida, ou seja, Lavar a Louça hoje, amanhã, depois de amanhã... não pode, ter que intercalar pela quantidade máxima definida, se for 2, pode-se apenas 2 vezes. A não ser que seja uma atividade restringida a outros usuários, neste caso vai para a única pessoa disponível. Informe 0 para sem limite.'
+1010624 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.permiteTroca IS 'Diz se uma determinada atividade permite troca com outro usuário. S -> Sim | N -> Não'
+1010625 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idatividade OWNED BY Atividade.idAtividade
+1010625 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupo
+1010625 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Grupo (
+                idGrupo INTEGER NOT NULL DEFAULT nextval('seq_idgrupo'),
+                idUsuario INTEGER NOT NULL,
+                descricao VARCHAR(255) NOT NULL,
+                tipoAgenda VARCHAR(10) DEFAULT 'AUTOMATICO' NOT NULL,
+                CONSTRAINT grupo_pk PRIMARY KEY (idGrupo)
+)
+1010625 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Grupo IS 'Definição dos grupos de usuários '
+1010625 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Grupo.descricao IS 'Descrição do Grupo - Ex: Família Müller'
+1010626 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Grupo.tipoAgenda IS 'Tipo do agendamento que será gerado com base nas atividades e usuários. AUTOMATICO -> Agendamento automatico vai gerar randomicamente as atividades aos usuários, levando em conta as restrições e configurações. | MANUAL -> Usuários Responsáveis devem atribuir as atividades manualmente, com base nas restrições e configurações.'
+1010626 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupo OWNED BY Grupo.idGrupo
+1010626 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividade
+1010626 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividade (
+                idGrupoAtividade INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividade'),
+                idGrupo INTEGER NOT NULL,
+                idAtividade INTEGER NOT NULL,
+                titulo VARCHAR(128) NOT NULL,
+                descricao VARCHAR(1024),
+                nivelDificuldade SMALLINT DEFAULT 3 NOT NULL,
+                qtdMaxAtividadeSeguidaUsuario SMALLINT DEFAULT 0 NOT NULL,
+                permiteTroca CHAR(1) DEFAULT 'S' NOT NULL,
+                CONSTRAINT grupoatividade_pk PRIMARY KEY (idGrupoAtividade)
+)
+1010627 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividade IS 'Define as atividades para distribuir entre os usuários do grupo.'
+1010627 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.titulo IS 'Título da atividade, ex: Lavar a louça'
+1010627 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.descricao IS 'Descrição sobre a atividade, ex: Ao lavar a louça, favor utilizar o detergente top1000 de linha, guardar também.'
+1010627 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.nivelDificuldade IS 'De 1 a 5 informe o nível de dificuldade para realização da atividade, sendo 1 muito tranquilo, 2 tranquilo, 3 normal, 4 dificil e 5 muito dificil.'
+1010627 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.qtdMaxAtividadeSeguidaUsuario IS 'Quantidade Máxima de Atividade que um Usuário pode ter seguida, ou seja, Lavar a Louça hoje, amanhã, depois de amanhã... não pode, ter que intercalar pela quantidade máxima definida, se for 2, pode-se apenas 2 vezes. A não ser que seja uma atividade restringida a outros usuários, neste caso vai para a única pessoa disponível. Informe 0 para sem limite.'
+1010627 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.permiteTroca IS 'Diz se uma determinada atividade permite troca com outro usuário. S -> Sim | N -> Não'
+1010627 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividade OWNED BY GrupoAtividade.idGrupoAtividade
+1010628 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupousuario
+1010628 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoUsuario (
+                idGrupoUsuario INTEGER NOT NULL DEFAULT nextval('seq_idgrupousuario'),
+                idGrupo INTEGER NOT NULL,
+                idUsuario INTEGER NOT NULL,
+                responsavel CHAR(1) DEFAULT 'N' NOT NULL,
+                situacao CHAR(1) DEFAULT 'P' NOT NULL,
+                CONSTRAINT grupousuario_pk PRIMARY KEY (idGrupoUsuario)
+)
+1010628 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoUsuario IS 'Definição dos usuários de um determinado grupo'
+1010628 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoUsuario.responsavel IS 'Informa se o usuário adicionado ao grupo é responsável sobre o grupo. S -> Sim | N -> Não'
+1010628 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoUsuario.situacao IS 'Situação do usuário no grupo. P -> Pendente, ou seja, aguardando usuário aceitar vinculo com o grupo. A -> Aceito, ou seja, usuário aceitou vinculo com o grupo. S -> Saiu, ou seja, usuário saiu do grupo.'
+1010629 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupousuario OWNED BY GrupoUsuario.idGrupoUsuario
+1010629 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadeagenda
+1010629 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeAgenda (
+                idGrupoAtividadeAgenda BIGINT NOT NULL DEFAULT nextval('seq_idgrupoatividadeagenda'),
+                idGrupoAtividade INTEGER NOT NULL,
+                idGrupoUsuario INTEGER NOT NULL,
+                dataAtividadePrevisao DATE NOT NULL,
+                dataAtividadeRealizada DATE,
+                horaAtividadeRealizada VARCHAR(10),
+                horaAtividadeRealizadaMs BIGINT,
+                CONSTRAINT grupoatividadeagenda_pk PRIMARY KEY (idGrupoAtividadeAgenda)
+)
+1010629 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeAgenda IS 'Define as atividades que serão executadas e quando serão executadas.Podendo ser automatico ou manual, com base na configuração.'
+1010630 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.dataAtividadePrevisao IS 'Data em que está previsto para realizar tal atividade.'
+1010630 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.dataAtividadeRealizada IS 'Data em que foi de fato realizada tal atividade.'
+1010630 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.horaAtividadeRealizada IS 'Hora em que tal atividade foi realizada.'
+1010630 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.horaAtividadeRealizadaMs IS 'Hora em que tal atividade foi realizada, no formato milissegundos. (execelente para cálculos)'
+1010630 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadeagenda OWNED BY GrupoAtividadeAgenda.idGrupoAtividadeAgenda
+1010630 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadeagendadetalhe
+1010631 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeAgendaDetalhe (
+                idGrupoAtividadeAgendaDetalhe INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividadeagendadetalhe'),
+                idGrupoAtividadeAgenda BIGINT NOT NULL,
+                descricao VARCHAR(255),
+                arquivo BYTEA,
+                nomeArquivo VARCHAR(128),
+                extensaoArquivo VARCHAR(32),
+                dataInclusao DATE DEFAULT current_date NOT NULL,
+                horaInclusao VARCHAR(10) NOT NULL,
+                idGrupoUsuarioInclusao INTEGER NOT NULL,
+                dataAlteracao DATE DEFAULT current_date NOT NULL,
+                horaAlteracao VARCHAR(10) NOT NULL,
+                idGrupoUsuarioAlteracao INTEGER NOT NULL,
+                CONSTRAINT grupoatividadeagendadetalhe_pk PRIMARY KEY (idGrupoAtividadeAgendaDetalhe)
+)
+1010631 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeAgendaDetalhe IS 'Define os detalhes (comentários, fotos, arquivos, etc...) de uma atividade.'
+1010631 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.descricao IS 'Descrição sobre o detalhe da atividade. Ex: Segue foto da louça limpa'
+1010631 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.arquivo IS 'Caso seja anexado um arquivo.'
+1010631 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.nomeArquivo IS 'Nome do arquivo, ao subir, pode-se alterar o nome original (será usado para download)'
+1010632 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.extensaoArquivo IS 'Extensão do arquivo, quando houver.'
+1010632 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.dataInclusao IS 'Data em que foi incluído o detalhe '
+1010632 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.horaInclusao IS 'Hora em que detalhe foi inserido.'
+1010632 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.idGrupoUsuarioInclusao IS 'Usuário que incluiu'
+1010632 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.dataAlteracao IS 'Data em que foi alterado o detalhe '
+1010632 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.horaAlteracao IS 'Hora em que detalhe foi alterado.'
+1010632 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.idGrupoUsuarioAlteracao IS 'Usuário que alterou'
+1010633 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadeagendadetalhe OWNED BY GrupoAtividadeAgendaDetalhe.idGrupoAtividadeAgendaDetalhe
+1010633 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadegrupousuario
+1010633 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeGrupoUsuario (
+                idGrupoAtividadeGrupoUsuario INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividadegrupousuario'),
+                idGrupoAtividade INTEGER NOT NULL,
+                idGrupoUsuario INTEGER NOT NULL,
+                situacao CHAR(1) DEFAULT 'A' NOT NULL,
+                CONSTRAINT grupoatividadegrupousuario_pk PRIMARY KEY (idGrupoAtividadeGrupoUsuario)
+)
+1010633 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeGrupoUsuario IS 'Define alguns parâmetros entre as atividades e o usuários. Exemplo: Usuário tal não pode realizar tal tarefa.'
+1010634 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeGrupoUsuario.situacao IS 'Se o usuário possui alguma restrinção, a tarefa não pode ser distribuída a ele. A -> Ativo (Apto para realização da atividade) | I -> Inativo (Inapto para realização da atividade)'
+1010634 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadegrupousuario OWNED BY GrupoAtividadeGrupoUsuario.idGrupoAtividadeGrupoUsuario
+1010634 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoUsuario ADD CONSTRAINT usuario_grupousuario_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010634 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Atividade ADD CONSTRAINT usuario_atividade_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010634 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Grupo ADD CONSTRAINT usuario_grupo_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010635 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividade ADD CONSTRAINT atividade_grupoatividade_fk
+FOREIGN KEY (idAtividade)
+REFERENCES Atividade (idAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010635 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoUsuario ADD CONSTRAINT grupo_grupousuario_fk
+FOREIGN KEY (idGrupo)
+REFERENCES Grupo (idGrupo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010635 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividade ADD CONSTRAINT grupo_grupoatividade_fk
+FOREIGN KEY (idGrupo)
+REFERENCES Grupo (idGrupo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010635 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeGrupoUsuario ADD CONSTRAINT grupoatividade_grupoatividadegrupousuario_fk
+FOREIGN KEY (idGrupoAtividade)
+REFERENCES GrupoAtividade (idGrupoAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010635 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgenda ADD CONSTRAINT grupoatividade_grupoagenda_fk
+FOREIGN KEY (idGrupoAtividade)
+REFERENCES GrupoAtividade (idGrupoAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010635 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeGrupoUsuario ADD CONSTRAINT grupousuario_grupoatividadegrupousuario_fk
+FOREIGN KEY (idGrupoUsuario)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010636 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgenda ADD CONSTRAINT grupousuario_grupoagenda_fk
+FOREIGN KEY (idGrupoUsuario)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010636 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupousuario_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoUsuarioInclusao)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010638 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupousuario_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoUsuarioAlteracao)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1010639 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupoatividadeagenda_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoAtividadeAgenda)
+REFERENCES GrupoAtividadeAgenda (idGrupoAtividadeAgenda)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023488 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE seq_idusuario
+1023488 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Usuario (
+                idUsuario INTEGER NOT NULL DEFAULT nextval('seq_idusuario'),
+                usuario VARCHAR(32) NOT NULL,
+                nome VARCHAR(255) NOT NULL,
+                CONSTRAINT usuario_pk PRIMARY KEY (idUsuario)
+)
+1023488 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Usuario IS 'Usuários do sistema'
+1023488 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Usuario.usuario IS 'Usuário para realizar login no sistema'
+1023489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Usuario.nome IS 'Nome do usuário que pertence a conta.'
+1023489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idusuario OWNED BY Usuario.idUsuario
+1023489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idatividade
+1023489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Atividade (
+                idAtividade INTEGER NOT NULL DEFAULT nextval('seq_idatividade'),
+                idUsuario INTEGER NOT NULL,
+                titulo VARCHAR(128) NOT NULL,
+                descricao VARCHAR(1024),
+                nivelDificuldade SMALLINT DEFAULT 3 NOT NULL,
+                qtdMaxAtividadeSeguidaUsuario SMALLINT DEFAULT 0 NOT NULL,
+                permiteTroca CHAR(1) DEFAULT 'S' NOT NULL,
+                CONSTRAINT atividade_pk PRIMARY KEY (idAtividade)
+)
+1023489 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Atividade IS 'Define as atividades padrões, podendo, no momento de vincular com o grupo, alterar as informações. Exemplo: Atividade tirar o lixo para rua, por padrão na minha região é ter, qui, sab, mas pode-ser que em outras regiões sejam outros dias, no caso vai ter a configuração padrão da atividade e a configuração que realmente será aplicada no grupo.'
+1023490 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.titulo IS 'Título da atividade, ex: Lavar a louça'
+1023490 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.descricao IS 'Descrição sobre a atividade, ex: Ao lavar a louça, favor utilizar o detergente top1000 de linha, guardar também.'
+1023490 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.nivelDificuldade IS 'De 1 a 5 informe o nível de dificuldade para realização da atividade, sendo 1 muito tranquilo, 2 tranquilo, 3 normal, 4 dificil e 5 muito dificil.'
+1023490 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.qtdMaxAtividadeSeguidaUsuario IS 'Quantidade Máxima de Atividade que um Usuário pode ter seguida, ou seja, Lavar a Louça hoje, amanhã, depois de amanhã... não pode, ter que intercalar pela quantidade máxima definida, se for 2, pode-se apenas 2 vezes. A não ser que seja uma atividade restringida a outros usuários, neste caso vai para a única pessoa disponível. Informe 0 para sem limite.'
+1023490 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.permiteTroca IS 'Diz se uma determinada atividade permite troca com outro usuário. S -> Sim | N -> Não'
+1023490 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idatividade OWNED BY Atividade.idAtividade
+1023491 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupo
+1023491 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Grupo (
+                idGrupo INTEGER NOT NULL DEFAULT nextval('seq_idgrupo'),
+                idUsuario INTEGER NOT NULL,
+                descricao VARCHAR(255) NOT NULL,
+                tipoAgenda VARCHAR(10) DEFAULT 'AUTOMATICO' NOT NULL,
+                CONSTRAINT grupo_pk PRIMARY KEY (idGrupo)
+)
+1023491 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Grupo IS 'Definição dos grupos de usuários '
+1023491 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Grupo.descricao IS 'Descrição do Grupo - Ex: Família Müller'
+1023491 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Grupo.tipoAgenda IS 'Tipo do agendamento que será gerado com base nas atividades e usuários. AUTOMATICO -> Agendamento automatico vai gerar randomicamente as atividades aos usuários, levando em conta as restrições e configurações. | MANUAL -> Usuários Responsáveis devem atribuir as atividades manualmente, com base nas restrições e configurações.'
+1023492 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupo OWNED BY Grupo.idGrupo
+1023492 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividade
+1023492 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividade (
+                idGrupoAtividade INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividade'),
+                idGrupo INTEGER NOT NULL,
+                idAtividade INTEGER NOT NULL,
+                titulo VARCHAR(128) NOT NULL,
+                descricao VARCHAR(1024),
+                nivelDificuldade SMALLINT DEFAULT 3 NOT NULL,
+                qtdMaxAtividadeSeguidaUsuario SMALLINT DEFAULT 0 NOT NULL,
+                permiteTroca CHAR(1) DEFAULT 'S' NOT NULL,
+                CONSTRAINT grupoatividade_pk PRIMARY KEY (idGrupoAtividade)
+)
+1023492 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividade IS 'Define as atividades para distribuir entre os usuários do grupo.'
+1023492 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.titulo IS 'Título da atividade, ex: Lavar a louça'
+1023492 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.descricao IS 'Descrição sobre a atividade, ex: Ao lavar a louça, favor utilizar o detergente top1000 de linha, guardar também.'
+1023493 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.nivelDificuldade IS 'De 1 a 5 informe o nível de dificuldade para realização da atividade, sendo 1 muito tranquilo, 2 tranquilo, 3 normal, 4 dificil e 5 muito dificil.'
+1023493 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.qtdMaxAtividadeSeguidaUsuario IS 'Quantidade Máxima de Atividade que um Usuário pode ter seguida, ou seja, Lavar a Louça hoje, amanhã, depois de amanhã... não pode, ter que intercalar pela quantidade máxima definida, se for 2, pode-se apenas 2 vezes. A não ser que seja uma atividade restringida a outros usuários, neste caso vai para a única pessoa disponível. Informe 0 para sem limite.'
+1023493 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.permiteTroca IS 'Diz se uma determinada atividade permite troca com outro usuário. S -> Sim | N -> Não'
+1023493 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividade OWNED BY GrupoAtividade.idGrupoAtividade
+1023493 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupousuario
+1023493 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoUsuario (
+                idGrupoUsuario INTEGER NOT NULL DEFAULT nextval('seq_idgrupousuario'),
+                idGrupo INTEGER NOT NULL,
+                idUsuario INTEGER NOT NULL,
+                responsavel CHAR(1) DEFAULT 'N' NOT NULL,
+                situacao CHAR(1) DEFAULT 'P' NOT NULL,
+                CONSTRAINT grupousuario_pk PRIMARY KEY (idGrupoUsuario)
+)
+1023493 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoUsuario IS 'Definição dos usuários de um determinado grupo'
+1023493 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoUsuario.responsavel IS 'Informa se o usuário adicionado ao grupo é responsável sobre o grupo. S -> Sim | N -> Não'
+1023493 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoUsuario.situacao IS 'Situação do usuário no grupo. P -> Pendente, ou seja, aguardando usuário aceitar vinculo com o grupo. A -> Aceito, ou seja, usuário aceitou vinculo com o grupo. S -> Saiu, ou seja, usuário saiu do grupo.'
+1023494 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupousuario OWNED BY GrupoUsuario.idGrupoUsuario
+1023494 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadeagenda
+1023494 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeAgenda (
+                idGrupoAtividadeAgenda BIGINT NOT NULL DEFAULT nextval('seq_idgrupoatividadeagenda'),
+                idGrupoAtividade INTEGER NOT NULL,
+                idGrupoUsuario INTEGER NOT NULL,
+                dataAtividadePrevisao DATE NOT NULL,
+                dataAtividadeRealizada DATE,
+                horaAtividadeRealizada VARCHAR(10),
+                horaAtividadeRealizadaMs BIGINT,
+                CONSTRAINT grupoatividadeagenda_pk PRIMARY KEY (idGrupoAtividadeAgenda)
+)
+1023494 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeAgenda IS 'Define as atividades que serão executadas e quando serão executadas.Podendo ser automatico ou manual, com base na configuração.'
+1023494 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.dataAtividadePrevisao IS 'Data em que está previsto para realizar tal atividade.'
+1023494 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.dataAtividadeRealizada IS 'Data em que foi de fato realizada tal atividade.'
+1023494 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.horaAtividadeRealizada IS 'Hora em que tal atividade foi realizada.'
+1023494 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.horaAtividadeRealizadaMs IS 'Hora em que tal atividade foi realizada, no formato milissegundos. (execelente para cálculos)'
+1023494 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadeagenda OWNED BY GrupoAtividadeAgenda.idGrupoAtividadeAgenda
+1023495 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadeagendadetalhe
+1023495 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeAgendaDetalhe (
+                idGrupoAtividadeAgendaDetalhe INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividadeagendadetalhe'),
+                idGrupoAtividadeAgenda BIGINT NOT NULL,
+                descricao VARCHAR(255),
+                arquivo BYTEA,
+                nomeArquivo VARCHAR(128),
+                extensaoArquivo VARCHAR(32),
+                dataInclusao DATE DEFAULT current_date NOT NULL,
+                horaInclusao VARCHAR(10) NOT NULL,
+                idGrupoUsuarioInclusao INTEGER NOT NULL,
+                dataAlteracao DATE DEFAULT current_date NOT NULL,
+                horaAlteracao VARCHAR(10) NOT NULL,
+                idGrupoUsuarioAlteracao INTEGER NOT NULL,
+                CONSTRAINT grupoatividadeagendadetalhe_pk PRIMARY KEY (idGrupoAtividadeAgendaDetalhe)
+)
+1023495 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeAgendaDetalhe IS 'Define os detalhes (comentários, fotos, arquivos, etc...) de uma atividade.'
+1023495 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.descricao IS 'Descrição sobre o detalhe da atividade. Ex: Segue foto da louça limpa'
+1023495 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.arquivo IS 'Caso seja anexado um arquivo.'
+1023495 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.nomeArquivo IS 'Nome do arquivo, ao subir, pode-se alterar o nome original (será usado para download)'
+1023495 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.extensaoArquivo IS 'Extensão do arquivo, quando houver.'
+1023495 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.dataInclusao IS 'Data em que foi incluído o detalhe '
+1023495 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.horaInclusao IS 'Hora em que detalhe foi inserido.'
+1023495 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.idGrupoUsuarioInclusao IS 'Usuário que incluiu'
+1023496 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.dataAlteracao IS 'Data em que foi alterado o detalhe '
+1023496 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.horaAlteracao IS 'Hora em que detalhe foi alterado.'
+1023496 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.idGrupoUsuarioAlteracao IS 'Usuário que alterou'
+1023496 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadeagendadetalhe OWNED BY GrupoAtividadeAgendaDetalhe.idGrupoAtividadeAgendaDetalhe
+1023496 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadegrupousuario
+1023496 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeGrupoUsuario (
+                idGrupoAtividadeGrupoUsuario INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividadegrupousuario'),
+                idGrupoAtividade INTEGER NOT NULL,
+                idGrupoUsuario INTEGER NOT NULL,
+                situacao CHAR(1) DEFAULT 'A' NOT NULL,
+                CONSTRAINT grupoatividadegrupousuario_pk PRIMARY KEY (idGrupoAtividadeGrupoUsuario)
+)
+1023496 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeGrupoUsuario IS 'Define alguns parâmetros entre as atividades e o usuários. Exemplo: Usuário tal não pode realizar tal tarefa.'
+1023496 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeGrupoUsuario.situacao IS 'Se o usuário possui alguma restrinção, a tarefa não pode ser distribuída a ele. A -> Ativo (Apto para realização da atividade) | I -> Inativo (Inapto para realização da atividade)'
+1023496 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadegrupousuario OWNED BY GrupoAtividadeGrupoUsuario.idGrupoAtividadeGrupoUsuario
+1023496 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoUsuario ADD CONSTRAINT usuario_grupousuario_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023497 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Atividade ADD CONSTRAINT usuario_atividade_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023497 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Grupo ADD CONSTRAINT usuario_grupo_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023497 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividade ADD CONSTRAINT atividade_grupoatividade_fk
+FOREIGN KEY (idAtividade)
+REFERENCES Atividade (idAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023497 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoUsuario ADD CONSTRAINT grupo_grupousuario_fk
+FOREIGN KEY (idGrupo)
+REFERENCES Grupo (idGrupo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023497 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividade ADD CONSTRAINT grupo_grupoatividade_fk
+FOREIGN KEY (idGrupo)
+REFERENCES Grupo (idGrupo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023497 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeGrupoUsuario ADD CONSTRAINT grupoatividade_grupoatividadegrupousuario_fk
+FOREIGN KEY (idGrupoAtividade)
+REFERENCES GrupoAtividade (idGrupoAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023497 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgenda ADD CONSTRAINT grupoatividade_grupoagenda_fk
+FOREIGN KEY (idGrupoAtividade)
+REFERENCES GrupoAtividade (idGrupoAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023497 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeGrupoUsuario ADD CONSTRAINT grupousuario_grupoatividadegrupousuario_fk
+FOREIGN KEY (idGrupoUsuario)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023498 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgenda ADD CONSTRAINT grupousuario_grupoagenda_fk
+FOREIGN KEY (idGrupoUsuario)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023498 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupousuario_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoUsuarioInclusao)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023498 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupousuario_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoUsuarioAlteracao)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1023498 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupoatividadeagenda_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoAtividadeAgenda)
+REFERENCES GrupoAtividadeAgenda (idGrupoAtividadeAgenda)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1052824 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :76
+1125520 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+CREATE SEQUENCE seq_idusuario
+1125520 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Usuario (
+                idUsuario INTEGER NOT NULL DEFAULT nextval('seq_idusuario'),
+                usuario VARCHAR(32) NOT NULL,
+                nome VARCHAR(255) NOT NULL,
+                CONSTRAINT usuario_pk PRIMARY KEY (idUsuario)
+)
+1125520 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Usuario IS 'Usuários do sistema'
+1125521 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Usuario.usuario IS 'Usuário para realizar login no sistema'
+1125521 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Usuario.nome IS 'Nome do usuário que pertence a conta.'
+1125521 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idusuario OWNED BY Usuario.idUsuario
+1125521 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idatividade
+1125522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Atividade (
+                idAtividade INTEGER NOT NULL DEFAULT nextval('seq_idatividade'),
+                idUsuario INTEGER NOT NULL,
+                titulo VARCHAR(128) NOT NULL,
+                descricao VARCHAR(1024),
+                nivelDificuldade SMALLINT DEFAULT 3 NOT NULL,
+                qtdMaxAtividadeSeguidaUsuario SMALLINT DEFAULT 0 NOT NULL,
+                permiteTroca CHAR(1) DEFAULT 'S' NOT NULL,
+                CONSTRAINT atividade_pk PRIMARY KEY (idAtividade)
+)
+1125522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Atividade IS 'Define as atividades padrões, podendo, no momento de vincular com o grupo, alterar as informações. Exemplo: Atividade tirar o lixo para rua, por padrão na minha região é ter, qui, sab, mas pode-ser que em outras regiões sejam outros dias, no caso vai ter a configuração padrão da atividade e a configuração que realmente será aplicada no grupo.'
+1125522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.titulo IS 'Título da atividade, ex: Lavar a louça'
+1125522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.descricao IS 'Descrição sobre a atividade, ex: Ao lavar a louça, favor utilizar o detergente top1000 de linha, guardar também.'
+1125522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.nivelDificuldade IS 'De 1 a 5 informe o nível de dificuldade para realização da atividade, sendo 1 muito tranquilo, 2 tranquilo, 3 normal, 4 dificil e 5 muito dificil.'
+1125522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.qtdMaxAtividadeSeguidaUsuario IS 'Quantidade Máxima de Atividade que um Usuário pode ter seguida, ou seja, Lavar a Louça hoje, amanhã, depois de amanhã... não pode, ter que intercalar pela quantidade máxima definida, se for 2, pode-se apenas 2 vezes. A não ser que seja uma atividade restringida a outros usuários, neste caso vai para a única pessoa disponível. Informe 0 para sem limite.'
+1125522 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Atividade.permiteTroca IS 'Diz se uma determinada atividade permite troca com outro usuário. S -> Sim | N -> Não'
+1125523 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idatividade OWNED BY Atividade.idAtividade
+1125523 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupo
+1125523 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE Grupo (
+                idGrupo INTEGER NOT NULL DEFAULT nextval('seq_idgrupo'),
+                idUsuario INTEGER NOT NULL,
+                descricao VARCHAR(255) NOT NULL,
+                tipoAgenda VARCHAR(10) DEFAULT 'AUTOMATICO' NOT NULL,
+                CONSTRAINT grupo_pk PRIMARY KEY (idGrupo)
+)
+1125523 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE Grupo IS 'Definição dos grupos de usuários '
+1125523 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Grupo.descricao IS 'Descrição do Grupo - Ex: Família Müller'
+1125524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN Grupo.tipoAgenda IS 'Tipo do agendamento que será gerado com base nas atividades e usuários. AUTOMATICO -> Agendamento automatico vai gerar randomicamente as atividades aos usuários, levando em conta as restrições e configurações. | MANUAL -> Usuários Responsáveis devem atribuir as atividades manualmente, com base nas restrições e configurações.'
+1125524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupo OWNED BY Grupo.idGrupo
+1125524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividade
+1125524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividade (
+                idGrupoAtividade INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividade'),
+                idGrupo INTEGER NOT NULL,
+                idAtividade INTEGER NOT NULL,
+                titulo VARCHAR(128) NOT NULL,
+                descricao VARCHAR(1024),
+                nivelDificuldade SMALLINT DEFAULT 3 NOT NULL,
+                qtdMaxAtividadeSeguidaUsuario SMALLINT DEFAULT 0 NOT NULL,
+                permiteTroca CHAR(1) DEFAULT 'S' NOT NULL,
+                CONSTRAINT grupoatividade_pk PRIMARY KEY (idGrupoAtividade)
+)
+1125524 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividade IS 'Define as atividades para distribuir entre os usuários do grupo.'
+1125525 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.titulo IS 'Título da atividade, ex: Lavar a louça'
+1125525 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.descricao IS 'Descrição sobre a atividade, ex: Ao lavar a louça, favor utilizar o detergente top1000 de linha, guardar também.'
+1125525 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.nivelDificuldade IS 'De 1 a 5 informe o nível de dificuldade para realização da atividade, sendo 1 muito tranquilo, 2 tranquilo, 3 normal, 4 dificil e 5 muito dificil.'
+1125525 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.qtdMaxAtividadeSeguidaUsuario IS 'Quantidade Máxima de Atividade que um Usuário pode ter seguida, ou seja, Lavar a Louça hoje, amanhã, depois de amanhã... não pode, ter que intercalar pela quantidade máxima definida, se for 2, pode-se apenas 2 vezes. A não ser que seja uma atividade restringida a outros usuários, neste caso vai para a única pessoa disponível. Informe 0 para sem limite.'
+1125525 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividade.permiteTroca IS 'Diz se uma determinada atividade permite troca com outro usuário. S -> Sim | N -> Não'
+1125525 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividade OWNED BY GrupoAtividade.idGrupoAtividade
+1125526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupousuario
+1125526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoUsuario (
+                idGrupoUsuario INTEGER NOT NULL DEFAULT nextval('seq_idgrupousuario'),
+                idGrupo INTEGER NOT NULL,
+                idUsuario INTEGER NOT NULL,
+                responsavel CHAR(1) DEFAULT 'N' NOT NULL,
+                situacao CHAR(1) DEFAULT 'P' NOT NULL,
+                CONSTRAINT grupousuario_pk PRIMARY KEY (idGrupoUsuario)
+)
+1125526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoUsuario IS 'Definição dos usuários de um determinado grupo'
+1125526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoUsuario.responsavel IS 'Informa se o usuário adicionado ao grupo é responsável sobre o grupo. S -> Sim | N -> Não'
+1125526 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoUsuario.situacao IS 'Situação do usuário no grupo. P -> Pendente, ou seja, aguardando usuário aceitar vinculo com o grupo. A -> Aceito, ou seja, usuário aceitou vinculo com o grupo. S -> Saiu, ou seja, usuário saiu do grupo.'
+1125527 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupousuario OWNED BY GrupoUsuario.idGrupoUsuario
+1125527 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadeagenda
+1125527 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeAgenda (
+                idGrupoAtividadeAgenda BIGINT NOT NULL DEFAULT nextval('seq_idgrupoatividadeagenda'),
+                idGrupoAtividade INTEGER NOT NULL,
+                idGrupoUsuario INTEGER NOT NULL,
+                dataAtividadePrevisao DATE NOT NULL,
+                dataAtividadeRealizada DATE,
+                horaAtividadeRealizada VARCHAR(10),
+                horaAtividadeRealizadaMs BIGINT,
+                CONSTRAINT grupoatividadeagenda_pk PRIMARY KEY (idGrupoAtividadeAgenda)
+)
+1125527 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeAgenda IS 'Define as atividades que serão executadas e quando serão executadas.Podendo ser automatico ou manual, com base na configuração.'
+1125527 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.dataAtividadePrevisao IS 'Data em que está previsto para realizar tal atividade.'
+1125528 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.dataAtividadeRealizada IS 'Data em que foi de fato realizada tal atividade.'
+1125528 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.horaAtividadeRealizada IS 'Hora em que tal atividade foi realizada.'
+1125528 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgenda.horaAtividadeRealizadaMs IS 'Hora em que tal atividade foi realizada, no formato milissegundos. (execelente para cálculos)'
+1125528 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadeagenda OWNED BY GrupoAtividadeAgenda.idGrupoAtividadeAgenda
+1125528 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadeagendadetalhe
+1125529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeAgendaDetalhe (
+                idGrupoAtividadeAgendaDetalhe INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividadeagendadetalhe'),
+                idGrupoAtividadeAgenda BIGINT NOT NULL,
+                descricao VARCHAR(255),
+                arquivo BYTEA,
+                nomeArquivo VARCHAR(128),
+                extensaoArquivo VARCHAR(32),
+                dataInclusao DATE DEFAULT current_date NOT NULL,
+                horaInclusao VARCHAR(10) NOT NULL,
+                idGrupoUsuarioInclusao INTEGER NOT NULL,
+                dataAlteracao DATE DEFAULT current_date NOT NULL,
+                horaAlteracao VARCHAR(10) NOT NULL,
+                idGrupoUsuarioAlteracao INTEGER NOT NULL,
+                CONSTRAINT grupoatividadeagendadetalhe_pk PRIMARY KEY (idGrupoAtividadeAgendaDetalhe)
+)
+1125529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeAgendaDetalhe IS 'Define os detalhes (comentários, fotos, arquivos, etc...) de uma atividade.'
+1125529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.descricao IS 'Descrição sobre o detalhe da atividade. Ex: Segue foto da louça limpa'
+1125529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.arquivo IS 'Caso seja anexado um arquivo.'
+1125529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.nomeArquivo IS 'Nome do arquivo, ao subir, pode-se alterar o nome original (será usado para download)'
+1125529 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.extensaoArquivo IS 'Extensão do arquivo, quando houver.'
+1125530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.dataInclusao IS 'Data em que foi incluído o detalhe '
+1125530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.horaInclusao IS 'Hora em que detalhe foi inserido.'
+1125530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.idGrupoUsuarioInclusao IS 'Usuário que incluiu'
+1125530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.dataAlteracao IS 'Data em que foi alterado o detalhe '
+1125530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.horaAlteracao IS 'Hora em que detalhe foi alterado.'
+1125530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeAgendaDetalhe.idGrupoUsuarioAlteracao IS 'Usuário que alterou'
+1125530 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadeagendadetalhe OWNED BY GrupoAtividadeAgendaDetalhe.idGrupoAtividadeAgendaDetalhe
+1125531 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE SEQUENCE seq_idgrupoatividadegrupousuario
+1125531 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+CREATE TABLE GrupoAtividadeGrupoUsuario (
+                idGrupoAtividadeGrupoUsuario INTEGER NOT NULL DEFAULT nextval('seq_idgrupoatividadegrupousuario'),
+                idGrupoAtividade INTEGER NOT NULL,
+                idGrupoUsuario INTEGER NOT NULL,
+                situacao CHAR(1) DEFAULT 'A' NOT NULL,
+                CONSTRAINT grupoatividadegrupousuario_pk PRIMARY KEY (idGrupoAtividadeGrupoUsuario)
+)
+1125531 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON TABLE GrupoAtividadeGrupoUsuario IS 'Define alguns parâmetros entre as atividades e o usuários. Exemplo: Usuário tal não pode realizar tal tarefa.'
+1125531 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+COMMENT ON COLUMN GrupoAtividadeGrupoUsuario.situacao IS 'Se o usuário possui alguma restrinção, a tarefa não pode ser distribuída a ele. A -> Ativo (Apto para realização da atividade) | I -> Inativo (Inapto para realização da atividade)'
+1125531 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+
+ALTER SEQUENCE seq_idgrupoatividadegrupousuario OWNED BY GrupoAtividadeGrupoUsuario.idGrupoAtividadeGrupoUsuario
+1125532 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoUsuario ADD CONSTRAINT usuario_grupousuario_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125532 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Atividade ADD CONSTRAINT usuario_atividade_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125532 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE Grupo ADD CONSTRAINT usuario_grupo_fk
+FOREIGN KEY (idUsuario)
+REFERENCES Usuario (idUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125532 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividade ADD CONSTRAINT atividade_grupoatividade_fk
+FOREIGN KEY (idAtividade)
+REFERENCES Atividade (idAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125532 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoUsuario ADD CONSTRAINT grupo_grupousuario_fk
+FOREIGN KEY (idGrupo)
+REFERENCES Grupo (idGrupo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125533 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividade ADD CONSTRAINT grupo_grupoatividade_fk
+FOREIGN KEY (idGrupo)
+REFERENCES Grupo (idGrupo)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125533 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeGrupoUsuario ADD CONSTRAINT grupoatividade_grupoatividadegrupousuario_fk
+FOREIGN KEY (idGrupoAtividade)
+REFERENCES GrupoAtividade (idGrupoAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125533 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgenda ADD CONSTRAINT grupoatividade_grupoagenda_fk
+FOREIGN KEY (idGrupoAtividade)
+REFERENCES GrupoAtividade (idGrupoAtividade)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125533 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeGrupoUsuario ADD CONSTRAINT grupousuario_grupoatividadegrupousuario_fk
+FOREIGN KEY (idGrupoUsuario)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125533 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgenda ADD CONSTRAINT grupousuario_grupoagenda_fk
+FOREIGN KEY (idGrupoUsuario)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125534 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupousuarioinclusao_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoUsuarioInclusao)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+DEFERRABLE INITIALLY IMMEDIATE
+1125535 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupousuarioalteracao_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoUsuarioAlteracao)
+REFERENCES GrupoUsuario (idGrupoUsuario)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125535 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ddl.GenericDDLGenerator  - endStatement: 
+
+ALTER TABLE GrupoAtividadeAgendaDetalhe ADD CONSTRAINT grupoatividadeagenda_grupoatividadeagendadetalhe_fk
+FOREIGN KEY (idGrupoAtividadeAgenda)
+REFERENCES GrupoAtividadeAgenda (idGrupoAtividadeAgenda)
+ON DELETE NO ACTION
+ON UPDATE NO ACTION
+NOT DEFERRABLE
+1125536 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :76

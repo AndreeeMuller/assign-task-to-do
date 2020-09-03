@@ -21,7 +21,7 @@
     <folder id="FOLTAB12" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
     <folder id="FOLTAB14" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX6" populated="true" UUID="fdc07d80-634a-49fb-9c97-10c598990f66" clustered="false" name="Grupo_pk" physicalName="Grupo_pk" primaryKeyIndex="true" unique="true" >
+    <index id="IDX6" populated="true" UUID="fdc07d80-634a-49fb-9c97-10c598990f66" clustered="false" name="Grupo_pk" physicalName="grupo_pk" primaryKeyIndex="true" unique="true" >
      <index-column id="IDC7" populated="true" UUID="4a7ef729-c7dd-4dc6-9867-43c8b6569a4c" ascendingOrDescending="UNSPECIFIED" column-ref="COL2" name="idGrupo" physicalName="idGrupo" />
     </index>
    </folder>
@@ -39,7 +39,7 @@
     <folder id="FOLTAB82" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
     <folder id="FOLTAB84" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX14" populated="true" UUID="e3d5e710-0b4b-4a90-af53-11ff4b7c8309" clustered="false" name="GrupoUsuario_pk" physicalName="GrupoUsuario_pk" primaryKeyIndex="true" unique="true" >
+    <index id="IDX14" populated="true" UUID="e3d5e710-0b4b-4a90-af53-11ff4b7c8309" clustered="false" name="GrupoUsuario_pk" physicalName="grupousuario_pk" primaryKeyIndex="true" unique="true" >
      <index-column id="IDC15" populated="true" UUID="588a5049-bfbe-413e-9ea2-43afecd48a6d" ascendingOrDescending="UNSPECIFIED" column-ref="COL9" name="idGrupoUsuario" physicalName="idGrupoUsuario" />
     </index>
    </folder>
@@ -55,7 +55,7 @@
     <folder id="FOLTAB162" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
     <folder id="FOLTAB164" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX20" populated="true" UUID="37e88a21-8129-467d-89e0-d8cd33e11b0f" clustered="false" name="Usuario_pk" physicalName="Usuario_pk" primaryKeyIndex="true" unique="true" >
+    <index id="IDX20" populated="true" UUID="37e88a21-8129-467d-89e0-d8cd33e11b0f" clustered="false" name="Usuario_pk" physicalName="usuario_pk" primaryKeyIndex="true" unique="true" >
      <index-column id="IDC21" populated="true" UUID="1b8d4b11-c653-4958-921e-23728fe56a50" ascendingOrDescending="UNSPECIFIED" column-ref="COL17" name="idUsuario" physicalName="idUsuario" />
     </index>
    </folder>
@@ -76,7 +76,7 @@
     <folder id="FOLTAB222" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
     <folder id="FOLTAB224" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX31" populated="true" UUID="c67897ad-d868-476c-b55e-a727e038bc86" clustered="false" name="GrupoAtividade_pk" physicalName="GrupoAtividade_pk" primaryKeyIndex="true" unique="true" >
+    <index id="IDX31" populated="true" UUID="c67897ad-d868-476c-b55e-a727e038bc86" clustered="false" name="GrupoAtividade_pk" physicalName="grupoatividade_pk" primaryKeyIndex="true" unique="true" >
      <index-column id="IDC32" populated="true" UUID="7fa16740-71c1-49bf-bc12-d3d21caba8af" ascendingOrDescending="UNSPECIFIED" column-ref="COL23" name="idGrupoAtividade" physicalName="idGrupoAtividade" />
     </index>
    </folder>
@@ -89,122 +89,123 @@
     <column id="COL37" populated="true" UUID="8b09b16a-81cc-4967-aa5a-1b69734a95b4" autoIncrement="false" autoIncrementSequenceName="Atividade_descricao_seq" defaultValue="" name="descricao" nullable="1" physicalName="descricao" precision="1024" referenceCount="1" remarks="Descrição sobre a atividade, ex: Ao lavar a louça, favor utilizar o detergente top1000 de linha, guardar também." scale="0" type="12" />
     <column id="COL38" populated="true" UUID="ce1916ce-c2e8-4469-acba-2ff3c93223f8" autoIncrement="false" autoIncrementSequenceName="Atividade_nivelDificuldade_seq" defaultValue="3" name="nivelDificuldade" nullable="0" physicalName="nivelDificuldade" precision="10" referenceCount="1" remarks="De 1 a 5 informe o nível de dificuldade para realização da atividade, sendo 1 muito tranquilo, 2 tranquilo, 3 normal, 4 dificil e 5 muito dificil." scale="0" type="5" />
     <column id="COL39" populated="true" UUID="e66abd02-2a6c-4cd5-a328-63d88e24d92d" autoIncrement="false" autoIncrementSequenceName="Grupo_qtdMaxAtividadeSeguidaUsuario_seq" defaultValue="0" name="qtdMaxAtividadeSeguidaUsuario" nullable="0" physicalName="qtdMaxAtividadeSeguidaUsuario" precision="10" referenceCount="1" remarks="Quantidade Máxima de Atividade que um Usuário pode ter seguida, ou seja, Lavar a Louça hoje, amanhã, depois de amanhã... não pode, ter que intercalar pela quantidade máxima definida, se for 2, pode-se apenas 2 vezes. A não ser que seja uma atividade restringida a outros usuários, neste caso vai para a única pessoa disponível. Informe 0 para sem limite." scale="0" type="5" />
+    <column id="COL40" populated="true" UUID="16eba75d-505c-422d-a444-22d4fe2bfcf0" autoIncrement="false" autoIncrementSequenceName="GrupoAtividade_permiteTroca_seq" defaultValue="&apos;S&apos;" name="permiteTroca" nullable="0" physicalName="permiteTroca" precision="1" referenceCount="1" remarks="Diz se uma determinada atividade permite troca com outro usuário. S -&gt; Sim | N -&gt; Não" scale="0" type="1" />
     </folder>
     <folder id="FOLTAB333" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
     </folder>
     <folder id="FOLTAB332" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
     <folder id="FOLTAB334" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX40" populated="true" UUID="9219d212-9999-43be-b340-ae16b2775dc3" clustered="false" name="Atividade_pk" physicalName="Atividade_pk" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC41" populated="true" UUID="e2fc154a-56c9-4632-85b5-264574104bfc" ascendingOrDescending="UNSPECIFIED" column-ref="COL34" name="idAtividade" physicalName="idAtividade" />
+    <index id="IDX41" populated="true" UUID="9219d212-9999-43be-b340-ae16b2775dc3" clustered="false" name="Atividade_pk" physicalName="atividade_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC42" populated="true" UUID="e2fc154a-56c9-4632-85b5-264574104bfc" ascendingOrDescending="UNSPECIFIED" column-ref="COL34" name="idAtividade" physicalName="idAtividade" />
     </index>
    </folder>
   </table>
-  <table id="TAB42" populated="true" UUID="efbfa5cc-dd20-4242-8314-834b28c3e92f" name="GrupoAtividadeGrupoUsuario" objectType="TABLE" physicalName="GrupoAtividadeGrupoUsuario" remarks="Define alguns parâmetros entre as atividades e o usuários. Exemplo: Usuário tal não pode realizar tal tarefa." >
-   <folder id="FOLTAB421" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL43" populated="true" UUID="b42b86dc-0999-4d9f-87f4-77fcf745f05f" autoIncrement="true" autoIncrementSequenceName="seq_idGrupoAtividadeGrupoUsuario" defaultValue="" name="idGrupoAtividadeGrupoUsuario" nullable="0" physicalName="idGrupoAtividadeGrupoUsuario" precision="10" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" type="4" />
-    <column id="COL44" populated="true" UUID="511473e5-1d44-445f-9512-99b9efafa7c2" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoAtividade" defaultValue="" name="idGrupoAtividade" nullable="0" physicalName="idGrupoAtividade" precision="10" referenceCount="1" remarks="" scale="0" type="4" />
-    <column id="COL45" populated="true" UUID="93665657-8650-4616-ad11-9f175b9997f5" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoUsuario" defaultValue="" name="idGrupoUsuario" nullable="0" physicalName="idGrupoUsuario" precision="10" referenceCount="1" remarks="" scale="0" type="4" />
-    <column id="COL46" populated="true" UUID="32a12a35-3ad4-458d-ad61-f155737955a5" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeGrupoUsuario_situacao_seq" defaultValue="&apos;A&apos;" name="situacao" nullable="0" physicalName="situacao" precision="1" referenceCount="1" remarks="Se o usuário possui alguma restrinção, a tarefa não pode ser distribuída a ele. A -&gt; Ativo (Apto para realização da atividade) | I -&gt; Inativo (Inapto para realização da atividade)" scale="0" type="1" />
+  <table id="TAB43" populated="true" UUID="efbfa5cc-dd20-4242-8314-834b28c3e92f" name="GrupoAtividadeGrupoUsuario" objectType="TABLE" physicalName="GrupoAtividadeGrupoUsuario" remarks="Define alguns parâmetros entre as atividades e o usuários. Exemplo: Usuário tal não pode realizar tal tarefa." >
+   <folder id="FOLTAB431" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL44" populated="true" UUID="b42b86dc-0999-4d9f-87f4-77fcf745f05f" autoIncrement="true" autoIncrementSequenceName="seq_idGrupoAtividadeGrupoUsuario" defaultValue="" name="idGrupoAtividadeGrupoUsuario" nullable="0" physicalName="idGrupoAtividadeGrupoUsuario" precision="10" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" type="4" />
+    <column id="COL45" populated="true" UUID="511473e5-1d44-445f-9512-99b9efafa7c2" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoAtividade" defaultValue="" name="idGrupoAtividade" nullable="0" physicalName="idGrupoAtividade" precision="10" referenceCount="1" remarks="" scale="0" type="4" />
+    <column id="COL46" populated="true" UUID="93665657-8650-4616-ad11-9f175b9997f5" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoUsuario" defaultValue="" name="idGrupoUsuario" nullable="0" physicalName="idGrupoUsuario" precision="10" referenceCount="1" remarks="" scale="0" type="4" />
+    <column id="COL47" populated="true" UUID="32a12a35-3ad4-458d-ad61-f155737955a5" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeGrupoUsuario_situacao_seq" defaultValue="&apos;A&apos;" name="situacao" nullable="0" physicalName="situacao" precision="1" referenceCount="1" remarks="Se o usuário possui alguma restrinção, a tarefa não pode ser distribuída a ele. A -&gt; Ativo (Apto para realização da atividade) | I -&gt; Inativo (Inapto para realização da atividade)" scale="0" type="1" />
     </folder>
-    <folder id="FOLTAB423" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    <folder id="FOLTAB433" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
     </folder>
-    <folder id="FOLTAB422" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    <folder id="FOLTAB432" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
-    <folder id="FOLTAB424" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX47" populated="true" UUID="fbf30e45-c96a-461b-8e70-003c9693cc27" clustered="false" name="GrupoAtividadeGrupoUsuario_pk" physicalName="GrupoAtividadeGrupoUsuario_pk" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC48" populated="true" UUID="bad5d35d-3af9-45a2-8b71-96e85dbae167" ascendingOrDescending="UNSPECIFIED" column-ref="COL43" name="idGrupoAtividadeGrupoUsuario" physicalName="idGrupoAtividadeGrupoUsuario" />
+    <folder id="FOLTAB434" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX48" populated="true" UUID="fbf30e45-c96a-461b-8e70-003c9693cc27" clustered="false" name="GrupoAtividadeGrupoUsuario_pk" physicalName="grupoatividadegrupousuario_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC49" populated="true" UUID="bad5d35d-3af9-45a2-8b71-96e85dbae167" ascendingOrDescending="UNSPECIFIED" column-ref="COL44" name="idGrupoAtividadeGrupoUsuario" physicalName="idGrupoAtividadeGrupoUsuario" />
     </index>
    </folder>
   </table>
-  <table id="TAB49" populated="true" UUID="6bb57d95-36fc-4205-8f61-5202fe271b8a" name="GrupoAtividadeAgenda" objectType="TABLE" physicalName="GrupoAtividadeAgenda" remarks="Define as atividades que serão executadas e quando serão executadas.Podendo ser automatico ou manual, com base na configuração." >
-   <folder id="FOLTAB491" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL50" populated="true" UUID="78bd523e-7daa-4cb3-bbef-6a3c7d20ea0f" autoIncrement="true" autoIncrementSequenceName="seq_idGrupoAtividadeAgenda" defaultValue="" name="idGrupoAtividadeAgenda" nullable="0" physicalName="idGrupoAtividadeAgenda" precision="10" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" type="-5" />
-    <column id="COL51" populated="true" UUID="5bc1fcda-c95b-4f90-b4e6-4805ef6aa043" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoAtividade" defaultValue="" name="idGrupoAtividade" nullable="0" physicalName="idGrupoAtividade" precision="10" referenceCount="1" remarks="" scale="0" type="4" />
-    <column id="COL52" populated="true" UUID="40e05e37-b33e-4d6e-aa7c-2d6e7d215dde" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoUsuario" defaultValue="" name="idGrupoUsuario" nullable="0" physicalName="idGrupoUsuario" precision="10" referenceCount="1" remarks="" scale="0" type="4" />
-    <column id="COL53" populated="true" UUID="cc6c6e2b-4e71-4198-99c3-6696329ad2ae" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_dataAtividadePrevisao_seq" defaultValue="" name="dataAtividadePrevisao" nullable="0" physicalName="dataAtividadePrevisao" precision="10" referenceCount="1" remarks="Data em que está previsto para realizar tal atividade." scale="0" type="91" />
-    <column id="COL54" populated="true" UUID="47078c61-d771-4868-baae-308f0f0832ef" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_dataAtividadeRealizada_seq" defaultValue="" name="dataAtividadeRealizada" nullable="1" physicalName="dataAtividadeRealizada" precision="10" referenceCount="1" remarks="Data em que foi de fato realizada tal atividade." scale="0" type="91" />
-    <column id="COL55" populated="true" UUID="159a8017-a349-45a9-86db-62c7b7a94691" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_horaAtividadeRealizada_seq" defaultValue="" name="horaAtividadeRealizada" nullable="1" physicalName="horaAtividadeRealizada" precision="10" referenceCount="1" remarks="Hora em que tal atividade foi realizada." scale="0" type="12" />
-    <column id="COL56" populated="true" UUID="8d4c213c-0578-44d6-a290-41c78f5b22df" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_horaAtividadeRealizadaMs_seq" defaultValue="" name="horaAtividadeRealizadaMs" nullable="1" physicalName="horaAtividadeRealizadaMs" precision="10" referenceCount="1" remarks="Hora em que tal atividade foi realizada, no formato milissegundos. (execelente para cálculos)" scale="0" type="-5" />
+  <table id="TAB50" populated="true" UUID="6bb57d95-36fc-4205-8f61-5202fe271b8a" name="GrupoAtividadeAgenda" objectType="TABLE" physicalName="GrupoAtividadeAgenda" remarks="Define as atividades que serão executadas e quando serão executadas.Podendo ser automatico ou manual, com base na configuração." >
+   <folder id="FOLTAB501" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL51" populated="true" UUID="78bd523e-7daa-4cb3-bbef-6a3c7d20ea0f" autoIncrement="true" autoIncrementSequenceName="seq_idGrupoAtividadeAgenda" defaultValue="" name="idGrupoAtividadeAgenda" nullable="0" physicalName="idGrupoAtividadeAgenda" precision="10" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" type="-5" />
+    <column id="COL52" populated="true" UUID="5bc1fcda-c95b-4f90-b4e6-4805ef6aa043" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoAtividade" defaultValue="" name="idGrupoAtividade" nullable="0" physicalName="idGrupoAtividade" precision="10" referenceCount="1" remarks="" scale="0" type="4" />
+    <column id="COL53" populated="true" UUID="40e05e37-b33e-4d6e-aa7c-2d6e7d215dde" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoUsuario" defaultValue="" name="idGrupoUsuario" nullable="0" physicalName="idGrupoUsuario" precision="10" referenceCount="1" remarks="" scale="0" type="4" />
+    <column id="COL54" populated="true" UUID="cc6c6e2b-4e71-4198-99c3-6696329ad2ae" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_dataAtividadePrevisao_seq" defaultValue="" name="dataAtividadePrevisao" nullable="0" physicalName="dataAtividadePrevisao" precision="10" referenceCount="1" remarks="Data em que está previsto para realizar tal atividade." scale="0" type="91" />
+    <column id="COL55" populated="true" UUID="47078c61-d771-4868-baae-308f0f0832ef" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_dataAtividadeRealizada_seq" defaultValue="" name="dataAtividadeRealizada" nullable="1" physicalName="dataAtividadeRealizada" precision="10" referenceCount="1" remarks="Data em que foi de fato realizada tal atividade." scale="0" type="91" />
+    <column id="COL56" populated="true" UUID="159a8017-a349-45a9-86db-62c7b7a94691" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_horaAtividadeRealizada_seq" defaultValue="" name="horaAtividadeRealizada" nullable="1" physicalName="horaAtividadeRealizada" precision="10" referenceCount="1" remarks="Hora em que tal atividade foi realizada." scale="0" type="12" />
+    <column id="COL57" populated="true" UUID="8d4c213c-0578-44d6-a290-41c78f5b22df" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_horaAtividadeRealizadaMs_seq" defaultValue="" name="horaAtividadeRealizadaMs" nullable="1" physicalName="horaAtividadeRealizadaMs" precision="10" referenceCount="1" remarks="Hora em que tal atividade foi realizada, no formato milissegundos. (execelente para cálculos)" scale="0" type="-5" />
     </folder>
-    <folder id="FOLTAB493" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    <folder id="FOLTAB503" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
     </folder>
-    <folder id="FOLTAB492" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    <folder id="FOLTAB502" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
-    <folder id="FOLTAB494" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX57" populated="true" UUID="5be22a89-2b16-4c71-b4b8-61071468c861" clustered="false" name="GrupoAtividadeAgenda_pk" physicalName="GrupoAtividadeAgenda_pk" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC58" populated="true" UUID="702f50f0-22ae-454d-abe9-fb01de51e5a0" ascendingOrDescending="UNSPECIFIED" column-ref="COL50" name="idGrupoAtividadeAgenda" physicalName="idGrupoAtividadeAgenda" />
+    <folder id="FOLTAB504" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX58" populated="true" UUID="5be22a89-2b16-4c71-b4b8-61071468c861" clustered="false" name="GrupoAtividadeAgenda_pk" physicalName="grupoatividadeagenda_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC59" populated="true" UUID="702f50f0-22ae-454d-abe9-fb01de51e5a0" ascendingOrDescending="UNSPECIFIED" column-ref="COL51" name="idGrupoAtividadeAgenda" physicalName="idGrupoAtividadeAgenda" />
     </index>
    </folder>
   </table>
-  <table id="TAB59" populated="true" UUID="5457ef58-e698-4964-a9a1-c45312a63a7c" name="GrupoAtividadeAgendaDetalhe" objectType="TABLE" physicalName="GrupoAtividadeAgendaDetalhe" remarks="Define os detalhes (comentários, fotos, arquivos, etc...) de uma atividade." >
-   <folder id="FOLTAB591" populated="true" name="Columns" physicalName="Columns" type="1">
-    <column id="COL60" populated="true" UUID="01e28da2-c453-4eb6-87b8-958945489165" autoIncrement="true" autoIncrementSequenceName="seq_idGrupoAtividadeAgendaDetalhe" defaultValue="" name="idGrupoAtividadeAgendaDetalhe" nullable="0" physicalName="idGrupoAtividadeAgendaDetalhe" precision="10" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" type="4" />
-    <column id="COL61" populated="true" UUID="337eb785-31ff-439a-af0a-ce3e633d5967" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoAtividadeAgenda" defaultValue="" name="idGrupoAtividadeAgenda" nullable="0" physicalName="idGrupoAtividadeAgenda" precision="10" referenceCount="1" remarks="" scale="0" type="-5" />
-    <column id="COL62" populated="true" UUID="367165ad-4ed8-42d6-9ab5-104827fa8b8b" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_descricao_seq" defaultValue="" name="descricao" nullable="1" physicalName="descricao" precision="255" referenceCount="1" remarks="Descrição sobre o detalhe da atividade. Ex: Segue foto da louça limpa" scale="0" type="12" />
-    <column id="COL63" populated="true" UUID="8209398f-c829-42dc-853c-2a9aa9fd425c" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_arquivo_seq" defaultValue="" name="arquivo" nullable="1" physicalName="arquivo" precision="10" referenceCount="1" remarks="Caso seja anexado um arquivo." scale="0" type="2004" />
-    <column id="COL64" populated="true" UUID="102f0a0b-0452-46ef-8637-b140c3282e52" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_nomeArquivo_seq" defaultValue="" name="nomeArquivo" nullable="1" physicalName="nomeArquivo" precision="128" referenceCount="1" remarks="Nome do arquivo, ao subir, pode-se alterar o nome original (será usado para download)" scale="0" type="12" />
-    <column id="COL65" populated="true" UUID="76505de9-da38-4c07-805c-4bcab90a26b8" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_extensaoArquivo_seq" defaultValue="" name="extensaoArquivo" nullable="1" physicalName="extensaoArquivo" precision="32" referenceCount="1" remarks="Extensão do arquivo, quando houver." scale="0" type="12" />
-    <column id="COL66" populated="true" UUID="96839823-fbf9-4105-9df7-9441e30118c1" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_dataInclusao_seq" defaultValue="current_date" name="dataInclusao" nullable="0" physicalName="dataInclusao" precision="10" referenceCount="1" remarks="Data em que foi incluído o detalhe	" scale="0" type="91" />
-    <column id="COL67" populated="true" UUID="d6b2ade7-9616-4e89-9182-e814b0f36113" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_horaInclusao_seq" defaultValue="" name="horaInclusao" nullable="0" physicalName="horaInclusao" precision="10" referenceCount="1" remarks="Hora em que detalhe foi inserido." scale="0" type="12" />
-    <column id="COL68" populated="true" UUID="3ae2803b-e828-4039-96dc-3d991c531a8d" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoUsuarioInclusao" defaultValue="" name="idGrupoUsuarioInclusao" nullable="0" physicalName="idGrupoUsuarioInclusao" precision="10" referenceCount="1" remarks="Usuário que incluiu" scale="0" type="4" />
-    <column id="COL69" populated="true" UUID="d65535e0-4303-4565-ac11-512af7f59cb2" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_dataAlteracao_seq" defaultValue="current_date" name="dataAlteracao" nullable="0" physicalName="dataAlteracao" precision="10" referenceCount="1" remarks="Data em que foi alterado o detalhe	" scale="0" type="91" />
-    <column id="COL70" populated="true" UUID="c18bd009-e2f0-497d-bfcb-792b72a4cd34" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_horaAlteracao_seq" defaultValue="" name="horaAlteracao" nullable="0" physicalName="horaAlteracao" precision="10" referenceCount="1" remarks="Hora em que detalhe foi alterado." scale="0" type="12" />
-    <column id="COL71" populated="true" UUID="51fdebd1-d17b-4c2b-80a2-2d8df843db17" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoUsuarioAlteracao" defaultValue="" name="idGrupoUsuarioAlteracao" nullable="0" physicalName="idGrupoUsuarioAlteracao" precision="10" referenceCount="1" remarks="Usuário que alterou" scale="0" type="4" />
+  <table id="TAB60" populated="true" UUID="5457ef58-e698-4964-a9a1-c45312a63a7c" name="GrupoAtividadeAgendaDetalhe" objectType="TABLE" physicalName="GrupoAtividadeAgendaDetalhe" remarks="Define os detalhes (comentários, fotos, arquivos, etc...) de uma atividade." >
+   <folder id="FOLTAB601" populated="true" name="Columns" physicalName="Columns" type="1">
+    <column id="COL61" populated="true" UUID="01e28da2-c453-4eb6-87b8-958945489165" autoIncrement="true" autoIncrementSequenceName="seq_idGrupoAtividadeAgendaDetalhe" defaultValue="" name="idGrupoAtividadeAgendaDetalhe" nullable="0" physicalName="idGrupoAtividadeAgendaDetalhe" precision="10" primaryKeySeq="0" referenceCount="1" remarks="" scale="0" type="4" />
+    <column id="COL62" populated="true" UUID="337eb785-31ff-439a-af0a-ce3e633d5967" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoAtividadeAgenda" defaultValue="" name="idGrupoAtividadeAgenda" nullable="0" physicalName="idGrupoAtividadeAgenda" precision="10" referenceCount="1" remarks="" scale="0" type="-5" />
+    <column id="COL63" populated="true" UUID="367165ad-4ed8-42d6-9ab5-104827fa8b8b" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_descricao_seq" defaultValue="" name="descricao" nullable="1" physicalName="descricao" precision="255" referenceCount="1" remarks="Descrição sobre o detalhe da atividade. Ex: Segue foto da louça limpa" scale="0" type="12" />
+    <column id="COL64" populated="true" UUID="8209398f-c829-42dc-853c-2a9aa9fd425c" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_arquivo_seq" defaultValue="" name="arquivo" nullable="1" physicalName="arquivo" precision="10" referenceCount="1" remarks="Caso seja anexado um arquivo." scale="0" type="2004" />
+    <column id="COL65" populated="true" UUID="102f0a0b-0452-46ef-8637-b140c3282e52" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_nomeArquivo_seq" defaultValue="" name="nomeArquivo" nullable="1" physicalName="nomeArquivo" precision="128" referenceCount="1" remarks="Nome do arquivo, ao subir, pode-se alterar o nome original (será usado para download)" scale="0" type="12" />
+    <column id="COL66" populated="true" UUID="76505de9-da38-4c07-805c-4bcab90a26b8" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_extensaoArquivo_seq" defaultValue="" name="extensaoArquivo" nullable="1" physicalName="extensaoArquivo" precision="32" referenceCount="1" remarks="Extensão do arquivo, quando houver." scale="0" type="12" />
+    <column id="COL67" populated="true" UUID="96839823-fbf9-4105-9df7-9441e30118c1" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_dataInclusao_seq" defaultValue="current_date" name="dataInclusao" nullable="0" physicalName="dataInclusao" precision="10" referenceCount="1" remarks="Data em que foi incluído o detalhe " scale="0" type="91" />
+    <column id="COL68" populated="true" UUID="d6b2ade7-9616-4e89-9182-e814b0f36113" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_horaInclusao_seq" defaultValue="" name="horaInclusao" nullable="0" physicalName="horaInclusao" precision="10" referenceCount="1" remarks="Hora em que detalhe foi inserido." scale="0" type="12" />
+    <column id="COL69" populated="true" UUID="3ae2803b-e828-4039-96dc-3d991c531a8d" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoUsuarioInclusao" defaultValue="" name="idGrupoUsuarioInclusao" nullable="0" physicalName="idGrupoUsuarioInclusao" precision="10" referenceCount="1" remarks="Usuário que incluiu" scale="0" type="4" />
+    <column id="COL70" populated="true" UUID="d65535e0-4303-4565-ac11-512af7f59cb2" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgendaDetalhe_dataAlteracao_seq" defaultValue="current_date" name="dataAlteracao" nullable="0" physicalName="dataAlteracao" precision="10" referenceCount="1" remarks="Data em que foi alterado o detalhe " scale="0" type="91" />
+    <column id="COL71" populated="true" UUID="c18bd009-e2f0-497d-bfcb-792b72a4cd34" autoIncrement="false" autoIncrementSequenceName="GrupoAtividadeAgenda_horaAlteracao_seq" defaultValue="" name="horaAlteracao" nullable="0" physicalName="horaAlteracao" precision="10" referenceCount="1" remarks="Hora em que detalhe foi alterado." scale="0" type="12" />
+    <column id="COL72" populated="true" UUID="51fdebd1-d17b-4c2b-80a2-2d8df843db17" autoIncrement="false" autoIncrementSequenceName="seq_idGrupoUsuarioAlteracao" defaultValue="" name="idGrupoUsuarioAlteracao" nullable="0" physicalName="idGrupoUsuarioAlteracao" precision="10" referenceCount="1" remarks="Usuário que alterou" scale="0" type="4" />
     </folder>
-    <folder id="FOLTAB593" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
+    <folder id="FOLTAB603" populated="true" name="Exported Keys" physicalName="Exported Keys" type="3">
     </folder>
-    <folder id="FOLTAB592" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
+    <folder id="FOLTAB602" populated="true" name="Imported Keys" physicalName="Imported Keys" type="2">
     </folder>
-    <folder id="FOLTAB594" populated="true" name="Indices" physicalName="Indices" type="4">
-    <index id="IDX72" populated="true" UUID="bb236b68-2b47-4820-a284-39d2641c7d66" clustered="false" name="GrupoAtividadeAgendaDetalhe_pk" physicalName="GrupoAtividadeAgendaDetalhe_pk" primaryKeyIndex="true" unique="true" >
-     <index-column id="IDC73" populated="true" UUID="8bd73f3d-cc54-4cbe-8be3-edbcb8f9e46d" ascendingOrDescending="UNSPECIFIED" column-ref="COL60" name="idGrupoAtividadeAgendaDetalhe" physicalName="idGrupoAtividadeAgendaDetalhe" />
+    <folder id="FOLTAB604" populated="true" name="Indices" physicalName="Indices" type="4">
+    <index id="IDX73" populated="true" UUID="bb236b68-2b47-4820-a284-39d2641c7d66" clustered="false" name="GrupoAtividadeAgendaDetalhe_pk" physicalName="grupoatividadeagendadetalhe_pk" primaryKeyIndex="true" unique="true" >
+     <index-column id="IDC74" populated="true" UUID="8bd73f3d-cc54-4cbe-8be3-edbcb8f9e46d" ascendingOrDescending="UNSPECIFIED" column-ref="COL61" name="idGrupoAtividadeAgendaDetalhe" physicalName="idGrupoAtividadeAgendaDetalhe" />
     </index>
    </folder>
   </table>
   <relationships>
-   <relationship id="REL74" populated="true" UUID="f3d0b786-6887-40fd-b8ab-703f1662ddf6" deferrability="7" deleteRule="3" fk-table-ref="TAB8" fkCardinality="7" identifying="false" name="Grupo_GrupoUsuario_fk" physicalName="Grupo_GrupoUsuario_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP75" populated="true" UUID="2bd37baf-5385-44ad-ba7a-4d5efb0dd7ee" fk-column-ref="COL10" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   <relationship id="REL75" populated="true" UUID="f3d0b786-6887-40fd-b8ab-703f1662ddf6" deferrability="7" deleteRule="3" fk-table-ref="TAB8" fkCardinality="7" identifying="false" name="Grupo_GrupoUsuario_fk" physicalName="grupo_grupousuario_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP76" populated="true" UUID="2bd37baf-5385-44ad-ba7a-4d5efb0dd7ee" fk-column-ref="COL10" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
    </relationship>
-   <relationship id="REL76" populated="true" UUID="23e28778-4feb-4754-a790-fb5ead6b69f7" deferrability="7" deleteRule="3" fk-table-ref="TAB22" fkCardinality="7" identifying="false" name="Grupo_GrupoAtividade_fk" physicalName="Grupo_GrupoAtividade_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP77" populated="true" UUID="68c30955-f7f7-4c33-8897-91139f74e5d0" fk-column-ref="COL24" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
+   <relationship id="REL77" populated="true" UUID="23e28778-4feb-4754-a790-fb5ead6b69f7" deferrability="7" deleteRule="3" fk-table-ref="TAB22" fkCardinality="7" identifying="false" name="Grupo_GrupoAtividade_fk" physicalName="grupo_grupoatividade_fk" pk-table-ref="TAB1" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP78" populated="true" UUID="68c30955-f7f7-4c33-8897-91139f74e5d0" fk-column-ref="COL24" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL2" />
    </relationship>
-   <relationship id="REL78" populated="true" UUID="ec82fd37-19ae-40ed-811a-3fcd086a9394" deferrability="7" deleteRule="3" fk-table-ref="TAB42" fkCardinality="7" identifying="false" name="GrupoUsuario_GrupoAtividadeGrupoUsuario_fk" physicalName="GrupoUsuario_GrupoAtividadeGrupoUsuario_fk" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP79" populated="true" UUID="8c5eeb7e-4096-4d45-a061-a5c59e9d457e" fk-column-ref="COL45" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
+   <relationship id="REL79" populated="true" UUID="ec82fd37-19ae-40ed-811a-3fcd086a9394" deferrability="7" deleteRule="3" fk-table-ref="TAB43" fkCardinality="7" identifying="false" name="GrupoUsuario_GrupoAtividadeGrupoUsuario_fk" physicalName="grupousuario_grupoatividadegrupousuario_fk" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP80" populated="true" UUID="8c5eeb7e-4096-4d45-a061-a5c59e9d457e" fk-column-ref="COL46" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
    </relationship>
-   <relationship id="REL80" populated="true" UUID="e08f2efa-0be9-4a72-a138-714a809daee8" deferrability="7" deleteRule="3" fk-table-ref="TAB49" fkCardinality="7" identifying="false" name="GrupoUsuario_GrupoAgenda_fk" physicalName="GrupoUsuario_GrupoAgenda_fk" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP81" populated="true" UUID="6fe2b919-f4f2-420e-9385-6e20c1844094" fk-column-ref="COL52" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
+   <relationship id="REL81" populated="true" UUID="e08f2efa-0be9-4a72-a138-714a809daee8" deferrability="7" deleteRule="3" fk-table-ref="TAB50" fkCardinality="7" identifying="false" name="GrupoUsuario_GrupoAgenda_fk" physicalName="grupousuario_grupoagenda_fk" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP82" populated="true" UUID="6fe2b919-f4f2-420e-9385-6e20c1844094" fk-column-ref="COL53" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
    </relationship>
-   <relationship id="REL82" populated="true" UUID="047c5fdb-4670-4fca-bc4a-b0ec1ebe2eb7" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="GrupoUsuario_GrupoAtividadeAgendaDetalhe_fk" physicalName="GrupoUsuario_GrupoAtividadeAgendaDetalhe_fk" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP83" populated="true" UUID="ae66c6b4-d9be-4f02-9bd4-5989fa284aed" fk-column-ref="COL68" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
+   <relationship id="REL83" populated="true" UUID="047c5fdb-4670-4fca-bc4a-b0ec1ebe2eb7" deferrability="6" deleteRule="3" fk-table-ref="TAB60" fkCardinality="7" identifying="false" name="GrupoUsuarioInclusao_GrupoAtividadeAgendaDetalhe_fk" physicalName="grupousuario_grupoatividadeagendadetalhe_fk" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP84" populated="true" UUID="711255ee-06f0-4f57-8b67-8c51607cc5a2" fk-column-ref="COL69" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
    </relationship>
-   <relationship id="REL84" populated="true" UUID="8e7a9ac0-93c0-488e-b285-c6e1e9bdd252" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="GrupoUsuario_GrupoAtividadeAgendaDetalhe_fk" physicalName="GrupoUsuario_GrupoAtividadeAgendaDetalhe_fk" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP85" populated="true" UUID="e99cbb9b-c1ef-448e-abad-96dc8b26b6f3" fk-column-ref="COL71" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
+   <relationship id="REL85" populated="true" UUID="8e7a9ac0-93c0-488e-b285-c6e1e9bdd252" deferrability="7" deleteRule="3" fk-table-ref="TAB60" fkCardinality="7" identifying="false" name="GrupoUsuarioAlteracao_GrupoAtividadeAgendaDetalhe_fk" physicalName="grupousuario_grupoatividadeagendadetalhe_fk" pk-table-ref="TAB8" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP86" populated="true" UUID="7fac78c7-77c0-4d3b-97e2-4e633144ddf4" fk-column-ref="COL72" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL9" />
    </relationship>
-   <relationship id="REL86" populated="true" UUID="f50a2a64-5f3e-47df-9c5b-1de70ae0d0b2" deferrability="7" deleteRule="3" fk-table-ref="TAB8" fkCardinality="7" identifying="false" name="Usuario_GrupoUsuario_fk" physicalName="Usuario_GrupoUsuario_fk" pk-table-ref="TAB16" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP87" populated="true" UUID="1d99d3a8-ea16-4b01-b390-2c8e3a38f453" fk-column-ref="COL11" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL17" />
+   <relationship id="REL87" populated="true" UUID="f50a2a64-5f3e-47df-9c5b-1de70ae0d0b2" deferrability="7" deleteRule="3" fk-table-ref="TAB8" fkCardinality="7" identifying="false" name="Usuario_GrupoUsuario_fk" physicalName="usuario_grupousuario_fk" pk-table-ref="TAB16" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP88" populated="true" UUID="1d99d3a8-ea16-4b01-b390-2c8e3a38f453" fk-column-ref="COL11" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL17" />
    </relationship>
-   <relationship id="REL88" populated="true" UUID="50b30a20-b2d4-4d6b-b25d-1df797b2bd33" deferrability="7" deleteRule="3" fk-table-ref="TAB33" fkCardinality="7" identifying="false" name="Usuario_Atividade_fk" physicalName="Usuario_Atividade_fk" pk-table-ref="TAB16" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP89" populated="true" UUID="5c9dc358-004a-46b2-ad73-70ba777b1fd8" fk-column-ref="COL35" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL17" />
+   <relationship id="REL89" populated="true" UUID="50b30a20-b2d4-4d6b-b25d-1df797b2bd33" deferrability="7" deleteRule="3" fk-table-ref="TAB33" fkCardinality="7" identifying="false" name="Usuario_Atividade_fk" physicalName="usuario_atividade_fk" pk-table-ref="TAB16" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP90" populated="true" UUID="5c9dc358-004a-46b2-ad73-70ba777b1fd8" fk-column-ref="COL35" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL17" />
    </relationship>
-   <relationship id="REL90" populated="true" UUID="555388d6-5863-43ee-a6a0-d1d2c69c98b4" deferrability="7" deleteRule="3" fk-table-ref="TAB1" fkCardinality="7" identifying="false" name="Usuario_Grupo_fk" physicalName="Usuario_Grupo_fk" pk-table-ref="TAB16" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP91" populated="true" UUID="aa1ea0d6-a83c-4d85-a8bc-358e655895b6" fk-column-ref="COL3" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL17" />
+   <relationship id="REL91" populated="true" UUID="555388d6-5863-43ee-a6a0-d1d2c69c98b4" deferrability="7" deleteRule="3" fk-table-ref="TAB1" fkCardinality="7" identifying="false" name="Usuario_Grupo_fk" physicalName="usuario_grupo_fk" pk-table-ref="TAB16" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP92" populated="true" UUID="aa1ea0d6-a83c-4d85-a8bc-358e655895b6" fk-column-ref="COL3" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL17" />
    </relationship>
-   <relationship id="REL92" populated="true" UUID="97f92f05-d70c-414a-8f49-1b3a948e41b7" deferrability="7" deleteRule="3" fk-table-ref="TAB42" fkCardinality="7" identifying="false" name="GrupoAtividade_GrupoAtividadeGrupoUsuario_fk" physicalName="GrupoAtividade_GrupoAtividadeGrupoUsuario_fk" pk-table-ref="TAB22" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP93" populated="true" UUID="45786a63-ea8b-4b03-a295-dcdca78f065c" fk-column-ref="COL44" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL23" />
+   <relationship id="REL93" populated="true" UUID="97f92f05-d70c-414a-8f49-1b3a948e41b7" deferrability="7" deleteRule="3" fk-table-ref="TAB43" fkCardinality="7" identifying="false" name="GrupoAtividade_GrupoAtividadeGrupoUsuario_fk" physicalName="grupoatividade_grupoatividadegrupousuario_fk" pk-table-ref="TAB22" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP94" populated="true" UUID="45786a63-ea8b-4b03-a295-dcdca78f065c" fk-column-ref="COL45" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL23" />
    </relationship>
-   <relationship id="REL94" populated="true" UUID="e68ccee6-629d-4504-bd31-f55139f135dc" deferrability="7" deleteRule="3" fk-table-ref="TAB49" fkCardinality="7" identifying="false" name="GrupoAtividade_GrupoAgenda_fk" physicalName="GrupoAtividade_GrupoAgenda_fk" pk-table-ref="TAB22" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP95" populated="true" UUID="598030dd-03b2-4e2d-bb1a-789e3febc393" fk-column-ref="COL51" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL23" />
+   <relationship id="REL95" populated="true" UUID="e68ccee6-629d-4504-bd31-f55139f135dc" deferrability="7" deleteRule="3" fk-table-ref="TAB50" fkCardinality="7" identifying="false" name="GrupoAtividade_GrupoAgenda_fk" physicalName="grupoatividade_grupoagenda_fk" pk-table-ref="TAB22" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP96" populated="true" UUID="598030dd-03b2-4e2d-bb1a-789e3febc393" fk-column-ref="COL52" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL23" />
    </relationship>
-   <relationship id="REL96" populated="true" UUID="2448b0a2-843a-4e35-80b9-4cc31f580c69" deferrability="7" deleteRule="3" fk-table-ref="TAB22" fkCardinality="7" identifying="false" name="Atividade_GrupoAtividade_fk" physicalName="Atividade_GrupoAtividade_fk" pk-table-ref="TAB33" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP97" populated="true" UUID="b3c25bf1-e217-49e0-8d93-605f2f5407ab" fk-column-ref="COL25" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL34" />
+   <relationship id="REL97" populated="true" UUID="2448b0a2-843a-4e35-80b9-4cc31f580c69" deferrability="7" deleteRule="3" fk-table-ref="TAB22" fkCardinality="7" identifying="false" name="Atividade_GrupoAtividade_fk" physicalName="atividade_grupoatividade_fk" pk-table-ref="TAB33" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP98" populated="true" UUID="b3c25bf1-e217-49e0-8d93-605f2f5407ab" fk-column-ref="COL25" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL34" />
    </relationship>
-   <relationship id="REL98" populated="true" UUID="7568ed5f-44b3-4c91-99db-af2a27a314ec" deferrability="7" deleteRule="3" fk-table-ref="TAB59" fkCardinality="7" identifying="false" name="GrupoAtividadeAgenda_GrupoAtividadeAgendaDetalhe_fk" physicalName="GrupoAtividadeAgenda_GrupoAtividadeAgendaDetalhe_fk" pk-table-ref="TAB49" pkCardinality="2" updateRule="3" >
-    <column-mapping id="CMP99" populated="true" UUID="05994dab-f533-4898-ac52-e995fe3017ea" fk-column-ref="COL61" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL50" />
+   <relationship id="REL99" populated="true" UUID="7568ed5f-44b3-4c91-99db-af2a27a314ec" deferrability="7" deleteRule="3" fk-table-ref="TAB60" fkCardinality="7" identifying="false" name="GrupoAtividadeAgenda_GrupoAtividadeAgendaDetalhe_fk" physicalName="grupoatividadeagenda_grupoatividadeagendadetalhe_fk" pk-table-ref="TAB50" pkCardinality="2" updateRule="3" >
+    <column-mapping id="CMP100" populated="true" UUID="05994dab-f533-4898-ac52-e995fe3017ea" fk-column-ref="COL62" name="Column Mapping" physicalName="Column Mapping" pk-column-ref="COL51" />
    </relationship>
   </relationships>
  </target-database>
- <ddl-generator type="ca.sqlpower.architect.ddl.GenericDDLGenerator" allow-connection="true"> </ddl-generator>
+ <ddl-generator type="ca.sqlpower.architect.ddl.PostgresDDLGenerator" allow-connection="false" target-schema=""> </ddl-generator>
  <create-kettle-job-settings filePath="" jobName="" schemaName="" kettleJoinType="0" savingToFile="true" />
  <play-pen zoom="1.0" viewportX="0" viewportY="0" relationship-style="rectilinear" names-displayLogicalNames="true" showPrimaryTag="true" showForeignTag="true" showAlternateTag="true" columnVisibility="ALL" relationshipLabelVisibility="true">
   <table-pane table-ref="TAB33" x="158" y="175" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
@@ -212,22 +213,22 @@
   <table-pane table-ref="TAB8" x="713" y="156" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB16" x="473" y="99" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
   <table-pane table-ref="TAB22" x="180" y="407" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB42" x="685" y="445" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB49" x="391" y="589" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-pane table-ref="TAB59" x="680" y="625" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
-  <table-link relationship-ref="REL96" pk-x="98" pk-y="113" fk-x="76" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
-  <table-link relationship-ref="REL74" pk-x="134" pk-y="22" fk-x="0" fk-y="69" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
-  <table-link relationship-ref="REL86" pk-x="130" pk-y="37" fk-x="85" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="129"/>
-  <table-link relationship-ref="REL76" pk-x="30" pk-y="85" fk-x="203" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
-  <table-link relationship-ref="REL92" pk-x="214" pk-y="71" fk-x="0" fk-y="33" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
-  <table-link relationship-ref="REL78" pk-x="88" pk-y="99" fk-x="116" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
-  <table-link relationship-ref="REL88" pk-x="0" pk-y="36" fk-x="175" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="130"/>
-  <table-link relationship-ref="REL90" pk-x="47" pk-y="71" fk-x="88" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
-  <table-link relationship-ref="REL94" pk-x="75" pk-y="141" fk-x="0" fk-y="53" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="36"/>
-  <table-link relationship-ref="REL80" pk-x="18" pk-y="99" fk-x="105" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
-  <table-link relationship-ref="REL98" pk-x="196" pk-y="47" fk-x="0" fk-y="47" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
-  <table-link relationship-ref="REL82" pk-x="59" pk-y="99" fk-x="92" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
-  <table-link relationship-ref="REL84" pk-x="131" pk-y="99" fk-x="164" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-pane table-ref="TAB43" x="685" y="445" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB50" x="391" y="589" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-pane table-ref="TAB60" x="680" y="625" bgColor="0xf0f0f0" fgColor="0x000000" rounded="false" dashed="false"/>
+  <table-link relationship-ref="REL97" pk-x="98" pk-y="127" fk-x="76" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL75" pk-x="134" pk-y="22" fk-x="0" fk-y="69" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL87" pk-x="130" pk-y="37" fk-x="85" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="129"/>
+  <table-link relationship-ref="REL77" pk-x="30" pk-y="85" fk-x="203" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL93" pk-x="214" pk-y="71" fk-x="0" fk-y="33" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL79" pk-x="88" pk-y="99" fk-x="116" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL89" pk-x="0" pk-y="36" fk-x="214" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="130"/>
+  <table-link relationship-ref="REL91" pk-x="47" pk-y="71" fk-x="88" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL95" pk-x="75" pk-y="141" fk-x="0" fk-y="53" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="36"/>
+  <table-link relationship-ref="REL81" pk-x="18" pk-y="99" fk-x="105" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL99" pk-x="196" pk-y="47" fk-x="0" fk-y="47" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="33"/>
+  <table-link relationship-ref="REL83" pk-x="59" pk-y="99" fk-x="92" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
+  <table-link relationship-ref="REL85" pk-x="131" pk-y="99" fk-x="164" fk-y="0" rLineColor="0x000000" pkLabelText="" fkLabelText="" orientation="132"/>
  </play-pen>
  <profiles topNCount="10">
   </profiles>

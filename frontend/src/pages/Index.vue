@@ -4,6 +4,7 @@
       alt="Quasar logo"
       src="~assets/quasar-logo-full.svg"
     >
+    <q-btn to="/grupo">grupo</q-btn>
   </q-page>
 </template>
 

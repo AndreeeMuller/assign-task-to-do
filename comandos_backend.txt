@@ -1,0 +1,26 @@
+npm init -y
+
+criar pasta src
+criar pasta src/controllers
+criar pasta src/routes
+criar arquivo src/routes/index.js
+criar arquivo src/index.js
+
+(pg para postgres)
+npm install express pg
+
+iniciar servidor
+node src/index.js
+
+para não precisar parar e iniciar o servidor toda hora (-D para não subir ao servidor de produção, ou seja, ignora esse modulo, funcuiona apenas para dev)
+npm install nodemon -D
+
+no arquivo package.json
+  "scripts": {
+    "dev": "nodemon src/index.js"
+  }
+
+então 
+npm run dev
+
+depois, toda vez que salvar, reinicia o server.
