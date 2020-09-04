@@ -3,6 +3,7 @@
     <q-form @submit="submit">
       <q-header elevated>
         <q-toolbar>
+          <q-btn flat round dense icon="keyboard_arrow_left" :to="{ name: 'grupo', params: $route.params }" />
           <q-toolbar-title>
             {{ page.title }}
           </q-toolbar-title>
@@ -36,16 +37,19 @@ const defaultForm = {
 }
 
 export default {
-  name: 'GrupoNovo',
+  name: 'GrupoManter',
   data () {
     return {
       page: {
-        title: 'Novo Grupo'
+        title: this.$route.params.idgrupo ? 'Alterando Grupo' : 'Novo Grupo'
       },
       form: Object.assign({}, defaultForm)
     }
   },
   methods: {
+    edit (data) {
+      this.form = Object.assign({}, defaultForm, data)
+    },
     submit () {
       const payload = Object.assign({}, this.form)
 
@@ -55,11 +59,39 @@ export default {
           this.$router.push({ name: 'grupo/atividade', params: { idgrupo: response.data.body.grupo.idgrupo } })
         })
         .catch((error) => {
-          console.log(error)
+          this.$q.notify({
+            type: 'negative',
+            message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
+            progress: true,
+            position: 'top'
+          })
         })
         .then(() => {
           this.$q.loading.hide()
         })
+    },
+    getByIdGrupo (idgrupo) {
+      this.$q.loading.show()
+      this.$service.grupo.getByIdGrupo(idgrupo)
+        .then((response) => {
+          this.edit(response.data[0])
+        })
+        .catch((error) => {
+          this.$q.notify({
+            type: 'negative',
+            message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
+            progress: true,
+            position: 'top'
+          })
+        })
+        .then(() => {
+          this.$q.loading.hide()
+        })
+    }
+  },
+  mounted () {
+    if (this.$route.params.idgrupo) {
+      this.getByIdGrupo(this.$route.params.idgrupo)
     }
   }
 }

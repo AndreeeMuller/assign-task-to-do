@@ -2,6 +2,7 @@
   <q-page padding>
     <q-header elevated>
       <q-toolbar>
+        <q-btn flat round dense icon="keyboard_arrow_left" :to="{ name: 'inicio', params: $route.params }" />
         <q-toolbar-title>
           {{ page.title }}
         </q-toolbar-title>
@@ -49,7 +50,7 @@ export default {
   data () {
     return {
       page: {
-        title: 'Grupos'
+        title: 'Grupo'
       },
       grupos: []
     }
@@ -65,7 +66,8 @@ export default {
           this.$q.notify({
             type: 'negative',
             message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
-            progress: true
+            progress: true,
+            position: 'top'
           })
         })
         .then(() => {
@@ -75,9 +77,9 @@ export default {
     deleteGrupo (grupo) {
       this.$q.dialog({
         title: 'Confirmar',
-        message: 'Tem certeza que deseja remover ' + grupo.descricao + '?',
-        cancel: true,
-        persistent: true
+        message: 'Tem certeza que deseja remover "' + grupo.descricao + '"?',
+        ok: 'Ok',
+        cancel: 'Cancelar'
       }).onOk(() => {
         this.$q.loading.show()
         this.$service.grupo.delete(grupo.idgrupo)
@@ -85,7 +87,8 @@ export default {
             this.$q.notify({
               type: response.data.error ? 'negative' : 'positive',
               message: response.data.message,
-              progress: true
+              progress: true,
+              position: 'top'
             })
             this.getAll()
           })
@@ -93,13 +96,20 @@ export default {
             this.$q.notify({
               type: 'negative',
               message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
-              progress: true
+              progress: true,
+              position: 'top'
             })
           })
           .then(() => {
             this.$q.loading.hide()
           })
       }).onCancel(() => {
+        this.$q.notify({
+          message: 'Ufa, essa foi por pouco, excelente escolha!',
+          type: 'info',
+          progress: true,
+          position: 'top'
+        })
       }).onDismiss(() => {
       })
     }

@@ -3,6 +3,7 @@
     <q-form @submit="submit">
       <q-header elevated>
         <q-toolbar>
+          <q-btn flat round dense icon="keyboard_arrow_left" @click="$router.go(-1)" />
           <q-toolbar-title>
             {{ page.title }}
           </q-toolbar-title>
@@ -66,13 +67,6 @@
           </div>
         </div>
       </div>
-      <!-- <q-rating v-model="form.niveldificuldade"
-                size="3.5em"
-                color="green-5"
-                :max="5"
-                :icon="[ 'sentiment_very_dissatisfied', 'sentiment_dissatisfied', 'sentiment_satisfied', 'sentiment_very_satisfied' ]"
-                :color-selected="[ 'light-green-3', 'light-green-6', 'green', 'green-9', 'green-10' ]">
-      </q-rating> -->
       <q-footer elevated>
         <q-toolbar>
           <q-toolbar-title>
@@ -95,16 +89,57 @@ const defaultForm = {
 }
 
 export default {
-  name: 'AtividadeNova',
+  name: 'AtividadeManter',
   data () {
     return {
       page: {
-        title: 'Nova Atividade'
+        title: this.$route.params.idatividade ? 'Alterando Atividade' : 'Nova Atividade'
       },
       form: Object.assign({}, defaultForm)
     }
   },
   methods: {
+    edit (data) {
+      this.form = Object.assign({}, defaultForm, data)
+    },
+    submit () {
+      const payload = Object.assign({}, this.form)
+
+      this.$q.loading.show()
+      this.$service.atividade[payload.idatividade ? 'update' : 'create'](payload)
+        .then((response) => {
+          this.$router.go(-1)
+        })
+        .catch((error) => {
+          this.$q.notify({
+            type: 'negative',
+            message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
+            progress: true,
+            position: 'top'
+          })
+        })
+        .then(() => {
+          this.$q.loading.hide()
+        })
+    },
+    getByIdAtividade (idatividade) {
+      this.$q.loading.show()
+      this.$service.atividade.getByIdAtividade(idatividade)
+        .then((response) => {
+          this.edit(response.data[0])
+        })
+        .catch((error) => {
+          this.$q.notify({
+            type: 'negative',
+            message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
+            progress: true,
+            position: 'top'
+          })
+        })
+        .then(() => {
+          this.$q.loading.hide()
+        })
+    },
     nivelDificuldadeLabel (value) {
       switch (value) {
         case 1: {
@@ -136,24 +171,11 @@ export default {
           return 'Máximo ' + value
         }
       }
-    },
-    submit () {
-      // Cria atividade e volta para a listagem passando a query como parametro se existir, para dar sequencia no cadastro de um grupo
-
-      this.$router.push({ name: 'atividade', query: this.$route.query })
-      // const payload = Object.assign({}, this.form)
-
-      // payload.action = payload.idgrupo ? 'update' : 'create'
-
-      // this.$q.loading.show()
-      // this.$service.createOrUpdate('grupo', payload)
-      //   .then((response) => {
-      //     this.$q.loading.hide()
-      //     this.$q.notify({
-      //       message: response.data.message,
-      //       type: response.data.type
-      //     })
-      //   })
+    }
+  },
+  mounted () {
+    if (this.$route.params.idatividade) {
+      this.getByIdAtividade(this.$route.params.idatividade)
     }
   }
 }

@@ -8,8 +8,16 @@ export default {
         return http.get('v1/grupo')
     },
 
+    getByIdGrupo (idgrupo) {
+        return http.get('v1/grupo/' + idgrupo)
+    },
+
     create (payload) {
         return http.post('v1/grupo', payload)
+    },
+
+    update (payload) {
+        return http.put('v1/grupo/' + payload.idgrupo, payload)
     },
 
     delete (idgrupo) {

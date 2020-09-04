@@ -51,14 +51,15 @@ exports.update = async (req, res) => {
   const idusuario = 1
 
   const response = await db.query(
-    'update grupo set descricao = $1, tipoagenda = $2',
-    [ descricao, tipoagenda ]
+    'update grupo set descricao = $1, tipoagenda = $2 where idgrupo = $3',
+    [ descricao, tipoagenda, idgrupo ]
   )
 
   res.status(200).send({
     message: 'Grupo atualizado com sucesso!',
     body: {
       grupo: {
+        idgrupo,
         idusuario,
         descricao,
         tipoagenda

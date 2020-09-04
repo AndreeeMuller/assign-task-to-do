@@ -3,15 +3,13 @@
     <q-form @submit="submit">
       <q-header elevated>
         <q-toolbar>
+          <q-btn flat round dense icon="keyboard_arrow_left" :to="{ name: 'grupo/editar', params: $route.params }" />
           <q-toolbar-title>
             {{ page.title }}
           </q-toolbar-title>
         </q-toolbar>
       </q-header>
       <div class="row fit" v-for="grupoAtividade in grupoAtividades" :key="grupoAtividade.idgrupoatividade">
-        <!-- <div class="col-auto">
-          <q-checkbox v-model="selection" color="primary" :val="grupoatividade" class="q-mt-sm" />
-        </div> -->
         <div class="col q-pa-xs">
           <q-list bordered class="rounded-borders">
             <q-expansion-item expand-separator>
@@ -20,7 +18,14 @@
                   {{ grupoAtividade.titulo }}
                 </q-item-section>
                 <q-item-section side>
-                  <q-btn @click.stop flat round size="sm" color="green" icon="edit" />
+                  <div class="row q-gutter-sm">
+                    <div class="col-auto">
+                      <q-btn @click.stop :to="{ name: 'atividade/editar', params: { idatividade: grupoAtividade.idgrupoatividade } }" flat round size="sm" color="positive" icon="edit" />
+                    </div>
+                    <div class="col-auto">
+                      <q-btn @click.stop="deleteGrupoAtividade(grupoAtividade)" flat round size="sm" color="negative" icon="delete" />
+                    </div>
+                  </div>
                 </q-item-section>
               </template>
               <q-card>
@@ -40,11 +45,17 @@
         </q-toolbar>
       </q-footer>
     </q-form>
-    <!-- <q-page-sticky position="bottom-right" :offset="[18, 78]" v-if="selection.length > 0">
-      <q-btn round color="negative" icon="delete" />
-    </q-page-sticky> -->
+    <div class="no-tasks absolute-center text-center" v-if="!grupoAtividades.length">
+      <q-icon name="warning"
+              size="100px"
+              color="primary">
+      </q-icon>
+      <div class="text-h5 text-center text-primary">
+        Nenhuma atividade grupo localizada
+      </div>
+    </div>
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn round color="primary" icon="add" :to="{ name: 'atividade', query: $route.query }" />
+      <q-btn round color="primary" icon="add" :to="{ name: 'grupo/atividade/adicionar', params: { idgrupo: $route.params.idgrupo } }" :size="!grupoAtividades.length ? 'xl' : 'md'" />
     </q-page-sticky>
   </q-page>
 </template>
@@ -59,42 +70,72 @@ export default {
         title: 'Atividade do Grupo'
       },
       grupoAtividades: []
-      // selection: []
     }
   },
   methods: {
     submit () {
-      // this.$router.push({ name: 'grupo/atividade', query: this.form })
-      // const payload = Object.assign({}, this.form)
-
-      // payload.action = payload.idgrupo ? 'update' : 'create'
-
-      // this.$q.loading.show()
-      // this.$service.createOrUpdate('grupo', payload)
-      //   .then((response) => {
-      //     this.$q.loading.hide()
-      //     this.$q.notify({
-      //       message: response.data.message,
-      //       type: response.data.type
-      //     })
-      //   })
+      console.log('oi')
     },
-    getByIdGrupo () {
+    getByIdGrupo (idgrupo) {
       this.$q.loading.show()
-      this.$service.grupoatividade.getByIdGrupo(this.$route.params.idgrupo)
+      this.$service.grupoatividade.getByIdGrupo(idgrupo)
         .then((response) => {
           this.grupoAtividades = response.data
         })
         .catch((error) => {
-          console.log(error)
+          this.$q.notify({
+            type: 'negative',
+            message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
+            progress: true,
+            position: 'top'
+          })
         })
         .then(() => {
           this.$q.loading.hide()
         })
+    },
+    deleteGrupoAtividade (grupoAtividade) {
+      this.$q.dialog({
+        title: 'Confirmar',
+        message: 'Tem certeza que deseja remover "' + grupoAtividade.titulo + '"?',
+        ok: 'Ok',
+        cancel: 'Cancelar'
+      }).onOk(() => {
+        this.$q.loading.show()
+        this.$service.grupoatividade.delete(grupoAtividade.idgrupoatividade)
+          .then((response) => {
+            this.$q.notify({
+              type: response.data.error ? 'negative' : 'positive',
+              message: response.data.message,
+              progress: true,
+              position: 'top'
+            })
+            this.getByIdGrupo(this.$route.params.idgrupo)
+          })
+          .catch((error) => {
+            this.$q.notify({
+              type: 'negative',
+              message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
+              progress: true,
+              position: 'top'
+            })
+          })
+          .then(() => {
+            this.$q.loading.hide()
+          })
+      }).onCancel(() => {
+        this.$q.notify({
+          message: 'Ufa, essa foi por pouco, excelente escolha!',
+          type: 'info',
+          progress: true,
+          position: 'top'
+        })
+      }).onDismiss(() => {
+      })
     }
   },
   mounted () {
-    this.getByIdGrupo()
+    this.getByIdGrupo(this.$route.params.idgrupo)
   }
 }
 </script>

@@ -1663,3 +1663,20 @@ ON DELETE NO ACTION
 ON UPDATE NO ACTION
 NOT DEFERRABLE
 1125536 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.SQLScriptDialog  - The list size is :76
+0    [AWT-EventQueue-0] INFO  ca.sqlpower.architect.ArchitectUtils  - Log4J configured successfully
+25   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+44   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+44   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Beginning to read/merge new pl.ini data
+57   [AWT-EventQueue-0] INFO  ca.sqlpower.sql.PlDotIni  - Finished reading file.
+1014 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1027 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1030 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1035 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1038 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1041 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1043 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+1045 [AWT-EventQueue-0] INFO  ca.sqlpower.sqlobject.SQLTable  - The physical name of the table is: null
+12855 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.DBTree  - DBTree: exporting list of DnD-type tree paths
+7849038 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.DBTree  - DBTree: exporting list of DnD-type tree paths
+7849231 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.DBTree  - DBTree: exporting list of DnD-type tree paths
+7849389 [AWT-EventQueue-0] INFO  ca.sqlpower.architect.swingui.DBTree  - DBTree: exporting list of DnD-type tree paths

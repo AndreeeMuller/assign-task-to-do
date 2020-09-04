@@ -30,68 +30,40 @@ exports.getByIdGrupoAtividade = async (req, res) => {
 
 exports.create = async (req, res) => {
 
-  const { descricao, tipoagenda } = req.body
-  
-  const idusuario = 1
+  const { idgrupo } = req.params
+
+  const { idatividade } = req.body
+
+  console.log(idatividade)
 
   const response = await db.query(
-    'insert into grupo (idusuario, descricao, tipoagenda) values ($1, $2, $3) returning idgrupo',
-    [ idusuario, descricao, tipoagenda ]
+    'insert into grupoatividade (idgrupo, idatividade, titulo, descricao, niveldificuldade, qtdmaxatividadeseguidausuario, permitetroca) Select $1 as idgrupo, a.idatividade, a.titulo, a.descricao, a.niveldificuldade, a.qtdmaxatividadeseguidausuario, a.permitetroca From atividade a Where a.idatividade = any($2::int[])',
+    [ idgrupo, idatividade ]
   )
+
+  console.log(response)
 
   res.status(201).send({
-    message: 'Grupo gravado com sucesso!',
-    body: {
-      grupo: {
-        idgrupo: response.rows[0].idgrupo,
-        idusuario,
-        descricao,
-        tipoagenda
-      }
-    }
-  })
-
-}
-
-exports.update = async (req, res) => {
-
-  const { idgrupo } = req.params
-  const { descricao, tipoagenda } = req.body
-  
-  const idusuario = 1
-
-  const response = await db.query(
-    'update grupo set descricao = $1, tipoagenda = $2',
-    [ descricao, tipoagenda ]
-  )
-
-  res.status(200).send({
-    message: 'Grupo atualizado com sucesso!',
-    body: {
-      grupo: {
-        idusuario,
-        descricao,
-        tipoagenda
-      }
-    }
+    message: 'Grupo Atividade gravado com sucesso!',
   })
 
 }
 
 exports.delete = async (req, res) => {
 
-  const { idgrupo } = req.params
+  const { idgrupoatividade } = req.params
 
   const response = await db.query(
-    'delete from grupo where idgrupo = $1',
-    [ idgrupo ]
+    'delete from grupoatividade where idgrupoatividade = $1',
+    [ idgrupoatividade ]
   )
 
   res.status(200).send({
-    message: 'Grupo removido com sucesso!',
+    error: false,
+    message: 'Grupo Atividade removido com sucesso!',
     body: {
-      grupo: {
-        idgrupo
+      grupoatividade: {
+        idgrupoatividade
       }
     }
   })

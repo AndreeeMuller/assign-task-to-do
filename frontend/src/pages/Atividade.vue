@@ -3,39 +3,44 @@
     <q-form @submit="submit">
       <q-header elevated>
         <q-toolbar>
+          <q-btn flat round dense icon="keyboard_arrow_left" :to="{ name: $route.params.idgrupo ? 'grupo/atividade' : 'inicio', params: $route.params }" />
           <q-toolbar-title>
             {{ page.title }}
           </q-toolbar-title>
         </q-toolbar>
       </q-header>
-      <div class="row fit" v-for="gp in grupoatividade" :key="gp.idgrupoatividade">
-        <div class="col-auto" v-if="$route.query.idgrupo">
-          <q-checkbox v-model="selection" color="primary" :val="gp.idgrupoatividade" class="q-mt-sm" />
+      <div class="row fit" v-for="atividade in atividades" :key="atividade.idatividade">
+        <div class="col-auto" v-if="$route.params.idgrupo">
+          <q-checkbox v-model="selection" color="primary" :val="atividade.idatividade" class="q-mt-sm" />
         </div>
         <div class="col q-pa-xs">
           <q-list bordered class="rounded-borders">
             <q-expansion-item expand-separator>
               <template v-slot:header>
-                <q-item-section avatar>
-                  <q-icon :name="gp.icone" />
-                </q-item-section>
                 <q-item-section>
-                  {{ gp.titulo }}
+                  {{ atividade.titulo }}
                 </q-item-section>
                 <q-item-section side>
-                  <q-btn @click.stop flat round size="sm" color="green" icon="edit" />
+                  <div class="row q-gutter-sm">
+                    <div class="col-auto">
+                      <q-btn @click.stop :to="{ name: 'atividade/editar', params: { idatividade: atividade.idatividade } }" flat round size="sm" color="positive" icon="edit" />
+                    </div>
+                    <div class="col-auto">
+                      <q-btn @click.stop="deleteAtividade(atividade)" flat round size="sm" color="negative" icon="delete" />
+                    </div>
+                  </div>
                 </q-item-section>
               </template>
               <q-card>
-                <q-card-section>
-                  {{ gp.descricao }}
+                <q-card-section style="white-space: pre-line; padding-top: 0; margin-top: -10px;">
+                  {{ atividade.descricao }}
                 </q-card-section>
               </q-card>
             </q-expansion-item>
           </q-list>
         </div>
       </div>
-      <q-footer elevated v-if="$route.query.idgrupo">
+      <q-footer elevated v-if="$route.params.idgrupo">
         <q-toolbar>
           <q-toolbar-title>
             <q-btn flat label="Continuar" type="submit" class="full-width"/>
@@ -43,8 +48,17 @@
         </q-toolbar>
       </q-footer>
     </q-form>
+    <div class="no-tasks absolute-center text-center" v-if="!atividades.length">
+      <q-icon name="warning"
+              size="100px"
+              color="primary">
+      </q-icon>
+      <div class="text-h5 text-center text-primary">
+        Nenhuma atividade localizada
+      </div>
+    </div>
     <q-page-sticky position="bottom-right" :offset="[18, 18]">
-      <q-btn round color="primary" icon="add" :to="{ name: 'atividade/nova', query: $route.query }" />
+      <q-btn round color="primary" icon="add" :to="{ name: 'atividade/nova' }" :size="!atividades.length ? 'xl' : 'md'" />
     </q-page-sticky>
   </q-page>
 </template>
@@ -56,64 +70,114 @@ export default {
   data () {
     return {
       page: {
-        title: 'Atividade'
+        title: this.$route.params.idgrupo ? 'Adicionar Atividade' : 'Atividade'
       },
-      grupoatividade: [
-        {
-          idgrupoatividade: 1,
-          idgrupo: null,
-          idatividade: null,
-          titulo: 'Lavar a louça',
-          descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non ligula nunc. Etiam tincidunt, purus vel vehicula imperdiet, lorem tellus pharetra quam, a eleifend dui nulla eget mi. Aliquam consequat viverra bibendum. Nam metus nibh, pretium vitae volutpat ac, mattis eget justo. Maecenas viverra sem augue, a aliquet enim pellentesque sed. Vestibulum facilisis mi in nulla placerat, vel pharetra ex iaculis. Vivamus est turpis, sagittis et sollicitudin nec, euismod nec turpis. Suspendisse euismod congue auctor. Nunc ac sollicitudin urna. Donec blandit elit eu libero sodales, sed tristique leo finibus. Sed sit amet leo sed turpis pellentesque faucibus at ac erat. In nunc est, hendrerit sed risus eget, egestas facilisis sem. Integer vel ornare mauris, sit amet rutrum quam.',
-          niveldificuldade: 3,
-          qtdmaxatividadeseguidausuario: 0,
-          permitetroca: 'S',
-          icone: 'perm_identity'
-        },
-        {
-          idgrupoatividade: 2,
-          idgrupo: null,
-          idatividade: null,
-          titulo: 'Limpar o banheiro',
-          descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non ligula nunc. Etiam tincidunt, purus vel vehicula imperdiet, lorem tellus pharetra quam, a eleifend dui nulla eget mi. Aliquam consequat viverra bibendum. Nam metus nibh, pretium vitae volutpat ac, mattis eget justo. Maecenas viverra sem augue, a aliquet enim pellentesque sed. Vestibulum facilisis mi in nulla placerat, vel pharetra ex iaculis. Vivamus est turpis, sagittis et sollicitudin nec, euismod nec turpis. Suspendisse euismod congue auctor. Nunc ac sollicitudin urna. Donec blandit elit eu libero sodales, sed tristique leo finibus. Sed sit amet leo sed turpis pellentesque faucibus at ac erat. In nunc est, hendrerit sed risus eget, egestas facilisis sem. Integer vel ornare mauris, sit amet rutrum quam.',
-          niveldificuldade: 3,
-          qtdmaxatividadeseguidausuario: 0,
-          permitetroca: 'S',
-          icone: 'save'
-        },
-        {
-          idgrupoatividade: 3,
-          idgrupo: null,
-          idatividade: null,
-          titulo: 'Levar o lixo para rua',
-          descricao: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas non ligula nunc. Etiam tincidunt, purus vel vehicula imperdiet, lorem tellus pharetra quam, a eleifend dui nulla eget mi. Aliquam consequat viverra bibendum. Nam metus nibh, pretium vitae volutpat ac, mattis eget justo. Maecenas viverra sem augue, a aliquet enim pellentesque sed. Vestibulum facilisis mi in nulla placerat, vel pharetra ex iaculis. Vivamus est turpis, sagittis et sollicitudin nec, euismod nec turpis. Suspendisse euismod congue auctor. Nunc ac sollicitudin urna. Donec blandit elit eu libero sodales, sed tristique leo finibus. Sed sit amet leo sed turpis pellentesque faucibus at ac erat. In nunc est, hendrerit sed risus eget, egestas facilisis sem. Integer vel ornare mauris, sit amet rutrum quam.',
-          niveldificuldade: 3,
-          qtdmaxatividadeseguidausuario: 0,
-          permitetroca: 'S',
-          icone: 'add'
-        }
-      ],
+      atividades: [],
       selection: []
     }
   },
   methods: {
     submit () {
-      // Salva as atividades vinculadas ao grupo solicitado e então volta a rota de atividades do grupo, atualizando a mesma
+      const idatividade = Object.assign([], this.selection)
 
-      // const payload = Object.assign({}, this.form)
-
-      // payload.action = payload.idgrupo ? 'update' : 'create'
-
-      // this.$q.loading.show()
-      // this.$service.createOrUpdate('grupo', payload)
-      //   .then((response) => {
-      //     this.$q.loading.hide()
-      //     this.$q.notify({
-      //       message: response.data.message,
-      //       type: response.data.type
-      //     })
-      this.$router.push({ name: 'grupo/atividade', query: this.$route.query })
-      //   })
+      this.$q.loading.show()
+      this.$service.grupoatividade.create(this.$route.params.idgrupo, idatividade)
+        .then((response) => {
+          this.$router.push({ name: 'grupo/atividade', params: { idgrupo: this.$route.params.idgrupo } })
+        })
+        .catch((error) => {
+          this.$q.notify({
+            type: 'negative',
+            message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
+            progress: true,
+            position: 'top'
+          })
+        })
+        .then(() => {
+          this.$q.loading.hide()
+        })
+    },
+    getAll () {
+      this.$q.loading.show()
+      this.$service.atividade.getAll()
+        .then((response) => {
+          this.atividades = response.data
+        })
+        .catch((error) => {
+          this.$q.notify({
+            type: 'negative',
+            message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
+            progress: true,
+            position: 'top'
+          })
+        })
+        .then(() => {
+          this.$q.loading.hide()
+        })
+    },
+    getAvaiableByIdGrupo (idgrupo) {
+      this.$q.loading.show()
+      this.$service.atividade.getAvaiableByIdGrupo(idgrupo)
+        .then((response) => {
+          this.atividades = response.data
+        })
+        .catch((error) => {
+          this.$q.notify({
+            type: 'negative',
+            message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
+            progress: true,
+            position: 'top'
+          })
+        })
+        .then(() => {
+          this.$q.loading.hide()
+        })
+    },
+    deleteAtividade (atividade) {
+      this.$q.dialog({
+        title: 'Confirmar',
+        message: 'Tem certeza que deseja remover "' + atividade.titulo + '"?',
+        ok: 'Ok',
+        cancel: 'Cancelar'
+      }).onOk(() => {
+        this.$q.loading.show()
+        this.$service.atividade.delete(atividade.idatividade)
+          .then((response) => {
+            this.$q.notify({
+              type: response.data.error ? 'negative' : 'positive',
+              message: response.data.message,
+              progress: true,
+              position: 'top'
+            })
+            this.getAll()
+          })
+          .catch((error) => {
+            this.$q.notify({
+              type: 'negative',
+              message: 'Não foi possível manter conexão com o servidor. Por favor, entre em contato com o suporte. (' + error + ')',
+              progress: true,
+              position: 'top'
+            })
+          })
+          .then(() => {
+            this.$q.loading.hide()
+          })
+      }).onCancel(() => {
+        this.$q.notify({
+          message: 'Ufa, essa foi por pouco, excelente escolha!',
+          type: 'info',
+          progress: true,
+          position: 'top'
+        })
+      }).onDismiss(() => {
+      })
+    }
+  },
+  mounted () {
+    if (this.$route.params.idgrupo) {
+      this.getAvaiableByIdGrupo(this.$route.params.idgrupo)
+    } else {
+      this.getAll()
     }
   }
 }
